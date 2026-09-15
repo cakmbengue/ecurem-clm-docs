@@ -1,0 +1,172 @@
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PKI Client — Ecurem CLM Docs</title>
+<meta name="description" content="Guide opérationnel PKI Client Ecurem CLM.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav">
+<a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a>
+<div class="navlinks">
+<a class="docs-home" href="/">Accueil</a>
+<a href="/security/">Sécurité</a>
+<a href="/discovery/">Discovery</a>
+<a href="/renewal/">Renewal</a>
+<a href="/pki/">PKI</a>
+<a href="/troubleshooting/">Dépannage</a>
+<a href="https://ecurem.cloud/">ecurem.cloud</a>
+<div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div>
+</div></nav></header>
+<div class="breadcrumb"><a href="/">Accueil</a> / PKI Client</div>
+<main class="article">
+<span class="eyebrow">PKI CLIENT</span>
+<h1>PKI Client</h1>
+<p class="lead">Créer et exploiter une hiérarchie de certification privée par organisation : autorités racine, intermédiaires et de délivrance, profils, demandes CSR, certificats émis, révocation, CRL, OCSP et audit.</p>
+
+<div class="toc"><strong>Dans cette page</strong>
+<a href="#overview">1. Ce que permet le module</a>
+<a href="#hierarchy">2. Choisir la hiérarchie PKI</a>
+<a href="#managed-root">3. Créer une racine gérée</a>
+<a href="#offline-root">4. Importer une racine hors ligne</a>
+<a href="#child">5. Créer une autorité fille</a>
+<a href="#profile">6. Créer un profil de certificat</a>
+<a href="#csr">7. Soumettre un CSR</a>
+<a href="#approval">8. Approbation et émission</a>
+<a href="#revocation">9. Révocation, CRL et OCSP</a>
+<a href="#algorithms">10. Algorithmes disponibles</a>
+<a href="#troubleshooting">11. Erreurs fréquentes</a>
+</div>
+
+<h2 id="overview">1. Ce que permet le module</h2>
+<p>Le tableau de bord <strong>PKI Client</strong> regroupe les autorités de certification, les certificats émis, les certificats révoqués et les autorités post-quantiques de votre organisation. Les actions principales disponibles dans l’interface sont <strong>Nouvelle racine gérée</strong>, <strong>Importer une racine hors ligne</strong>, <strong>Nouvelle autorité fille</strong>, <strong>Nouveau profil</strong> et <strong>Soumettre un CSR</strong>.</p>
+<p>Les objets PKI sont isolés par organisation. Une demande ne peut pas utiliser un profil ou une autorité appartenant à une autre organisation.</p>
+
+<h2 id="hierarchy">2. Choisir la hiérarchie PKI</h2>
+<p>Ecurem CLM distingue trois types d’autorités :</p>
+<ul>
+<li><strong>Root / Racine</strong> : autorité auto-signée au sommet de la hiérarchie.</li>
+<li><strong>Intermediate / Intermédiaire</strong> : autorité signée par une racine et utilisée pour séparer les niveaux de confiance.</li>
+<li><strong>Issuing / Délivrance</strong> : autorité destinée à signer les certificats finaux.</li>
+</ul>
+<div class="callout"><strong>Règle importante :</strong> une autorité de délivrance ne peut pas signer une autre autorité. Une autorité intermédiaire ne peut créer qu’une autorité de délivrance. Lorsque l’exigence de sécurité PKI est activée, les certificats finaux doivent être émis par une autorité de type <strong>Issuing</strong>.</div>
+<p>Une architecture courante est donc :</p>
+<p><code>Racine → Autorité intermédiaire → Autorité de délivrance → Certificats finaux</code></p>
+<p>Pour une structure plus simple, vous pouvez également utiliser :</p>
+<p><code>Racine → Autorité de délivrance → Certificats finaux</code></p>
+
+<h2 id="managed-root">3. Créer une racine gérée</h2>
+<p>Dans <strong>PKI Client</strong>, cliquez sur <strong>Nouvelle racine gérée</strong>. Le formulaire demande :</p>
+<ul>
+<li><strong>Organisation</strong> : organisation propriétaire de la PKI.</li>
+<li><strong>Nom</strong> : nom d’affichage interne, par exemple <code>Acme Root CA 2026</code>.</li>
+<li><strong>Nom commun X.509</strong> : valeur CN inscrite dans le certificat de la racine, par exemple <code>Acme Corporate Root CA</code>.</li>
+<li><strong>Algorithme de signature</strong> : RSA 3072, RSA 4096, ECDSA P-256, ECDSA P-384, ML-DSA-44, ML-DSA-65 ou ML-DSA-87.</li>
+<li><strong>Validité en jours</strong> : entre <strong>365 et 7300 jours</strong>. La valeur initiale proposée par le formulaire est 3650 jours.</li>
+<li><strong>URL de distribution CRL</strong> : facultative si la plateforme publie déjà une URL par défaut.</li>
+<li><strong>URL OCSP</strong> : facultative si la plateforme publie déjà une URL par défaut.</li>
+</ul>
+<p>Après création, Ecurem CLM génère la racine auto-signée, protège la clé privée dans le backend configuré, génère une première CRL et prépare un répondeur OCSP. La clé privée n’est pas affichée à l’utilisateur dans le formulaire.</p>
+<div class="callout warning"><strong>Conseil :</strong> choisissez soigneusement le nom commun et la durée avant la création. Une racine est un objet de confiance à longue durée de vie et doit être gouvernée comme telle.</div>
+
+<h2 id="offline-root">4. Importer une racine hors ligne</h2>
+<p>L’action <strong>Importer une racine hors ligne</strong> sert lorsque la racine est créée et conservée en dehors d’Ecurem CLM. Dans ce modèle, Ecurem CLM référence le certificat de la racine et permet de construire la hiérarchie opérationnelle sans faire de la plateforme le détenteur de la clé privée de cette racine.</p>
+<p>Ce modèle est recommandé lorsque votre politique exige que la racine reste hors ligne. L’émission quotidienne peut alors être déléguée à une autorité intermédiaire ou de délivrance gérée par la plateforme.</p>
+<p>La plateforme prend également en charge la publication/import de CRL d’une racine externe afin que l’état de révocation reste exploitable dans la chaîne de confiance.</p>
+
+<h2 id="child">5. Créer une autorité fille</h2>
+<p>Cliquez sur <strong>Nouvelle autorité fille</strong>. Les champs sont :</p>
+<ul>
+<li><strong>Organisation</strong>.</li>
+<li><strong>Autorité parente</strong> : une racine ou une intermédiaire active, non révoquée, appartenant à la même organisation.</li>
+<li><strong>Type d’autorité</strong> : <em>Autorité intermédiaire</em> ou <em>Autorité de délivrance</em>.</li>
+<li><strong>Nom</strong>.</li>
+<li><strong>Nom commun X.509</strong>.</li>
+<li><strong>Algorithme de signature</strong>.</li>
+<li><strong>Validité en jours</strong> : entre <strong>30 et 3650 jours</strong>, avec 1825 jours proposés initialement.</li>
+<li><strong>URL de distribution CRL des certificats émis</strong>.</li>
+<li><strong>URL OCSP des certificats émis</strong>.</li>
+</ul>
+<p>La validité réelle d’une autorité fille ne peut pas dépasser la durée restante de sa parente. Ecurem CLM limite automatiquement la durée si nécessaire.</p>
+<p>La hiérarchie est aussi contrôlée par les contraintes X.509 : une autorité parente expirée, révoquée, désactivée ou dont la contrainte de chemin interdit le niveau demandé ne peut pas signer la nouvelle autorité.</p>
+
+<h2 id="profile">6. Créer un profil de certificat</h2>
+<p>Un profil définit les règles applicables aux certificats finaux. Cliquez sur <strong>Nouveau profil</strong> puis renseignez :</p>
+<ul>
+<li><strong>Organisation</strong>.</li>
+<li><strong>Nom</strong> : par exemple <code>TLS serveurs internes</code>.</li>
+<li><strong>Validité en jours</strong> : durée des certificats émis avec ce profil.</li>
+<li><strong>Suffixes DNS autorisés</strong> : un suffixe par ligne, par exemple <code>services.example.ca</code>. Les valeurs sont normalisées en minuscules.</li>
+<li><strong>Autoriser les wildcards</strong> : activez uniquement si le besoin de certificats <code>*.example.ca</code> est réel.</li>
+<li><strong>Approbation requise</strong> : si activée, une demande doit être explicitement approuvée avant émission.</li>
+<li><strong>Activé</strong> : un profil désactivé n’est plus proposé pour les nouvelles demandes.</li>
+</ul>
+<p>Dans l’interface client actuelle, les usages techniques du profil sont initialisés pour les certificats TLS serveur avec <code>digitalSignature</code> et <code>serverAuth</code>. Les suffixes DNS et la politique wildcard servent ensuite à contrôler les noms demandés.</p>
+<div class="callout"><strong>Exemple :</strong> avec le suffixe autorisé <code>corp.example.ca</code>, le profil peut servir à encadrer les demandes telles que <code>api.corp.example.ca</code> et <code>vpn.corp.example.ca</code>. N’ajoutez pas un suffixe plus large que nécessaire.</div>
+
+<h2 id="csr">7. Soumettre un CSR</h2>
+<p>Cliquez sur <strong>Soumettre un CSR</strong>. Le formulaire demande exactement :</p>
+<ul>
+<li><strong>Organisation</strong>.</li>
+<li><strong>Profil</strong> : uniquement les profils actifs accessibles dans votre organisation.</li>
+<li><strong>Autorité</strong> : uniquement les autorités actives, non révoquées et autorisées. Lorsque le contrôle <em>Issuing CA obligatoire</em> est actif, seules les autorités de délivrance sont proposées.</li>
+<li><strong>CSR PEM</strong> : requête PKCS#10 au format PEM.</li>
+</ul>
+<p>Ecurem CLM analyse le CSR avant de l’accepter. Le CSR doit :</p>
+<ul>
+<li>être un CSR PKCS#10 PEM valide ;</li>
+<li>avoir une signature cryptographique valide ;</li>
+<li>contenir un <strong>Common Name</strong> ;</li>
+<li>respecter le profil sélectionné, notamment le périmètre DNS et la politique wildcard.</li>
+</ul>
+<p>Le <strong>Common Name</strong> et les <strong>Subject Alternative Names</strong> sont extraits du CSR et conservés dans la demande. Vous n’avez donc pas à les ressaisir séparément dans ce formulaire.</p>
+
+<h2 id="approval">8. Approbation et émission</h2>
+<p>Les demandes suivent des statuts explicites : <code>Pending</code>, <code>Approved</code>, <code>Rejected</code>, <code>Issued</code> ou <code>Failed</code>.</p>
+<ul>
+<li>Si le profil exige une approbation, la demande doit être <strong>Approved</strong> avant émission.</li>
+<li>L’autorité de délivrance doit être active et non révoquée.</li>
+<li>L’autorité et la demande doivent appartenir à la même organisation.</li>
+<li>La validité du certificat final ne peut pas dépasser la validité restante de l’autorité émettrice.</li>
+</ul>
+<p>Après émission, Ecurem CLM conserve le numéro de série, le certificat PEM, la chaîne, l’empreinte SHA-256, les dates de validité et le lien vers la demande d’origine.</p>
+<p>La chaîne X.509 inclut les informations de révocation disponibles : URL OCSP et point de distribution CRL lorsque ceux-ci sont configurés.</p>
+
+<h2 id="revocation">9. Révocation, CRL et OCSP</h2>
+<p>Un certificat émis peut être révoqué lorsqu’il ne doit plus être considéré comme valide : compromission de clé, remplacement, cessation d’usage ou autre raison de gouvernance.</p>
+<p>La révocation est enregistrée avec sa raison, la date et l’utilisateur ayant exécuté l’action. Le module maintient également :</p>
+<ul>
+<li>une <strong>CRL</strong> signée par autorité, avec numéro, empreinte, dates <em>thisUpdate</em> et <em>nextUpdate</em> ;</li>
+<li>un <strong>répondeur OCSP</strong> associé à l’autorité ;</li>
+<li>des événements d’<strong>audit PKI</strong> qui enregistrent l’organisation, l’acteur, l’action, l’objet, le résultat et les détails techniques utiles.</li>
+</ul>
+<p>Le tableau des autorités fournit les actions de publication/révocation nécessaires. Avant une mise en production, assurez-vous que les URLs CRL/OCSP publiques sont correctement définies et accessibles aux consommateurs des certificats.</p>
+
+<h2 id="algorithms">10. Algorithmes disponibles</h2>
+<p>Le modèle d’autorité supporte actuellement :</p>
+<ul>
+<li><strong>RSA 3072</strong></li>
+<li><strong>RSA 4096</strong></li>
+<li><strong>ECDSA P-256</strong></li>
+<li><strong>ECDSA P-384</strong></li>
+<li><strong>ML-DSA-44</strong></li>
+<li><strong>ML-DSA-65</strong></li>
+<li><strong>ML-DSA-87</strong></li>
+</ul>
+<p>Le choix dépend de votre politique cryptographique, de la compatibilité des systèmes consommateurs et du niveau de préparation post-quantique recherché. Ne choisissez pas ML-DSA uniquement parce qu’il est disponible : vérifiez que les composants qui consommeront la chaîne savent traiter cet algorithme.</p>
+
+<h2 id="troubleshooting">11. Erreurs fréquentes</h2>
+<ul>
+<li><strong>« Le profil appartient à une autre organisation »</strong> : sélectionnez un profil de la même organisation que la demande.</li>
+<li><strong>« L’autorité appartient à une autre organisation »</strong> : sélectionnez une autorité du même tenant.</li>
+<li><strong>« Le CSR PKCS#10 PEM est invalide »</strong> : vérifiez les balises PEM et régénérez le CSR.</li>
+<li><strong>« La signature du CSR est invalide »</strong> : le CSR a été altéré ou mal généré.</li>
+<li><strong>« Le CSR ne contient aucun nom commun »</strong> : fournissez un CN dans le CSR.</li>
+<li><strong>Autorité non proposée</strong> : vérifiez qu’elle est active, non révoquée et, si requis, de type <em>Issuing</em>.</li>
+<li><strong>Autorité fille impossible à créer</strong> : vérifiez le type de la parente, son statut, sa date d’expiration et les contraintes de chemin X.509.</li>
+<li><strong>Émission bloquée en attente</strong> : vérifiez si le profil impose une approbation explicite.</li>
+</ul>
+<div class="callout success"><strong>Avant un déploiement réel :</strong> testez une chaîne complète sur un périmètre pilote : création/import de la racine, autorité de délivrance, profil restreint, CSR, approbation, émission, validation de chaîne, révocation, CRL et OCSP.</div>
+</main>
+<footer class="footer"><div class="footer-inner">
+<span>© 2026 Ecurem — Technology &amp; Cybersecurity</span>
+<span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span>
+</div></footer></body></html>

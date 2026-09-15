@@ -23,6 +23,7 @@ The legacy guide on `https://ecurem.cloud/guide` remains dedicated to Ecurem ACM
 - AI Assistant
 - Reports
 - Troubleshooting
+- Client PKI
 - FAQ
 
 Internal engineering procedures, production paths, credentials and private operational details do not belong in this repository.

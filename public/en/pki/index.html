@@ -1,0 +1,137 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Client PKI — Ecurem CLM Docs</title>
+<meta name="description" content="Operational Ecurem CLM Client PKI guide.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav">
+<a class="brand" href="/en"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a>
+<div class="navlinks">
+<a class="docs-home" href="/en">Home</a>
+<a href="/en/security/">Security</a>
+<a href="/en/discovery/">Discovery</a>
+<a href="/en/renewal/">Renewal</a>
+<a href="/en/pki/">PKI</a>
+<a href="/en/troubleshooting/">Troubleshooting</a>
+<a href="https://ecurem.cloud/en/">ecurem.cloud</a>
+<div class="lang"><a class="" href="/">FR</a><a class="active" href="/en/">EN</a></div>
+</div></nav></header>
+<div class="breadcrumb"><a href="/en/">Home</a> / Client PKI</div>
+<main class="article">
+<span class="eyebrow">CLIENT PKI</span>
+<h1>Client PKI</h1>
+<p class="lead">Build and operate a private certification hierarchy per organization: root, intermediate and issuing authorities, profiles, CSR requests, issued certificates, revocation, CRL, OCSP and audit.</p>
+
+<div class="toc"><strong>On this page</strong>
+<a href="#overview">1. What the module provides</a>
+<a href="#hierarchy">2. Choose the PKI hierarchy</a>
+<a href="#managed-root">3. Create a managed root</a>
+<a href="#offline-root">4. Import an offline root</a>
+<a href="#child">5. Create a child authority</a>
+<a href="#profile">6. Create a certificate profile</a>
+<a href="#csr">7. Submit a CSR</a>
+<a href="#approval">8. Approval and issuance</a>
+<a href="#revocation">9. Revocation, CRL and OCSP</a>
+<a href="#algorithms">10. Available algorithms</a>
+<a href="#troubleshooting">11. Common errors</a>
+</div>
+
+<h2 id="overview">1. What the module provides</h2>
+<p>The <strong>Client PKI</strong> dashboard groups certification authorities, issued certificates, revoked certificates and post-quantum authorities for your organization. Main interface actions include <strong>New Managed Root</strong>, <strong>Import an Offline Root</strong>, <strong>New Child Authority</strong>, <strong>New Profile</strong> and <strong>Submit a CSR</strong>.</p>
+<p>PKI objects are isolated by organization. A request cannot use a profile or authority owned by another organization.</p>
+
+<h2 id="hierarchy">2. Choose the PKI hierarchy</h2>
+<p>Ecurem CLM distinguishes three authority types:</p>
+<ul>
+<li><strong>Root</strong>: self-signed trust anchor.</li>
+<li><strong>Intermediate</strong>: signed by a root and used to separate trust layers.</li>
+<li><strong>Issuing</strong>: authority intended to sign end-entity certificates.</li>
+</ul>
+<div class="callout"><strong>Important rule:</strong> an issuing authority cannot sign another authority. An intermediate authority may only create an issuing authority. When the PKI issuing-CA control is enabled, end-entity certificates must be issued by an <strong>Issuing</strong> authority.</div>
+<p>A common hierarchy is <code>Root → Intermediate → Issuing → End-entity certificates</code>.</p>
+
+<h2 id="managed-root">3. Create a managed root</h2>
+<p>From <strong>Client PKI</strong>, select <strong>New Managed Root</strong>. The form asks for:</p>
+<ul>
+<li><strong>Organization</strong>.</li>
+<li><strong>Name</strong>: internal display name.</li>
+<li><strong>X.509 Common Name</strong>.</li>
+<li><strong>Signature algorithm</strong>.</li>
+<li><strong>Validity in days</strong>: from <strong>365 to 7300</strong>; the initial value is 3650 days.</li>
+<li><strong>CRL distribution URL</strong>.</li>
+<li><strong>OCSP URL</strong>.</li>
+</ul>
+<p>After creation, Ecurem CLM creates the self-signed root, protects the private key in the configured backend, generates an initial CRL and prepares an OCSP responder.</p>
+
+<h2 id="offline-root">4. Import an offline root</h2>
+<p>Use <strong>Import an Offline Root</strong> when the root is created and kept outside Ecurem CLM. The platform can reference the root certificate and build the operational hierarchy without holding that root private key.</p>
+<p>This model is useful when policy requires an offline trust anchor. Daily issuance can then be delegated to an intermediate or issuing authority.</p>
+
+<h2 id="child">5. Create a child authority</h2>
+<p>Select <strong>New Child Authority</strong>. Fields are:</p>
+<ul>
+<li><strong>Organization</strong>.</li>
+<li><strong>Parent authority</strong>: active, non-revoked root or intermediate from the same organization.</li>
+<li><strong>Authority type</strong>: Intermediate or Issuing.</li>
+<li><strong>Name</strong>.</li>
+<li><strong>X.509 Common Name</strong>.</li>
+<li><strong>Signature algorithm</strong>.</li>
+<li><strong>Validity in days</strong>: from <strong>30 to 3650</strong>, initially 1825 days.</li>
+<li><strong>CRL distribution URL for issued certificates</strong>.</li>
+<li><strong>OCSP URL for issued certificates</strong>.</li>
+</ul>
+<p>The actual child validity cannot exceed the parent’s remaining lifetime. The platform also enforces X.509 path-length and CA constraints.</p>
+
+<h2 id="profile">6. Create a certificate profile</h2>
+<p>Select <strong>New Profile</strong> and configure:</p>
+<ul>
+<li><strong>Organization</strong>.</li>
+<li><strong>Name</strong>.</li>
+<li><strong>Validity in days</strong>.</li>
+<li><strong>Allowed DNS suffixes</strong>: one per line.</li>
+<li><strong>Allow wildcards</strong>.</li>
+<li><strong>Require approval</strong>.</li>
+<li><strong>Enabled</strong>.</li>
+</ul>
+<p>In the current customer interface, the technical usages are initialized for TLS server certificates with <code>digitalSignature</code> and <code>serverAuth</code>.</p>
+
+<h2 id="csr">7. Submit a CSR</h2>
+<p>The <strong>Submit a CSR</strong> form asks for exactly:</p>
+<ul>
+<li><strong>Organization</strong>.</li>
+<li><strong>Profile</strong>.</li>
+<li><strong>Authority</strong>.</li>
+<li><strong>CSR PEM</strong>.</li>
+</ul>
+<p>The CSR must be valid PKCS#10 PEM, have a valid cryptographic signature, contain a Common Name and comply with the selected profile. Common Name and Subject Alternative Names are parsed from the CSR.</p>
+
+<h2 id="approval">8. Approval and issuance</h2>
+<p>Request states include <code>Pending</code>, <code>Approved</code>, <code>Rejected</code>, <code>Issued</code> and <code>Failed</code>.</p>
+<p>If the profile requires approval, the request must be explicitly approved before issuance. The authority must be enabled, non-revoked and in the same organization. When the issuing-CA requirement is enabled, the selected authority must be of type <strong>Issuing</strong>.</p>
+<p>After issuance, Ecurem CLM stores the serial number, certificate PEM, chain, SHA-256 fingerprint, validity dates and source request.</p>
+
+<h2 id="revocation">9. Revocation, CRL and OCSP</h2>
+<p>Revocation records include the reason, revocation time and actor. The module also maintains signed CRLs, delegated OCSP responders and PKI audit events containing organization, actor, action, object, outcome and useful details.</p>
+<p>Before production use, ensure public CRL and OCSP URLs are correctly defined and reachable by relying systems.</p>
+
+<h2 id="algorithms">10. Available algorithms</h2>
+<ul>
+<li>RSA 3072</li><li>RSA 4096</li><li>ECDSA P-256</li><li>ECDSA P-384</li><li>ML-DSA-44</li><li>ML-DSA-65</li><li>ML-DSA-87</li>
+</ul>
+<p>Select algorithms according to cryptographic policy and relying-party compatibility. Post-quantum support should be validated end to end before operational use.</p>
+
+<h2 id="troubleshooting">11. Common errors</h2>
+<ul>
+<li><strong>Profile belongs to another organization</strong>: use a profile from the request organization.</li>
+<li><strong>Authority belongs to another organization</strong>: use an authority from the same tenant.</li>
+<li><strong>Invalid PKCS#10 PEM CSR</strong>: fix PEM formatting or regenerate the CSR.</li>
+<li><strong>Invalid CSR signature</strong>: regenerate the request from the original private key.</li>
+<li><strong>CSR has no Common Name</strong>: include a CN in the CSR.</li>
+<li><strong>Authority is not offered</strong>: check enabled/revoked state and Issuing type requirement.</li>
+<li><strong>Request remains pending</strong>: check whether explicit approval is required.</li>
+</ul>
+</main>
+<footer class="footer"><div class="footer-inner">
+<span>© 2026 Ecurem — Technology &amp; Cybersecurity</span>
+<span><a href="https://ecurem.cloud/en/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span>
+</div></footer></body></html>
