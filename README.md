@@ -1,4 +1,4 @@
-# Ecurem CLM Documentation
+﻿# Ecurem CLM Documentation
 
 Public documentation repository for Ecurem CLM SaaS.
 
@@ -30,9 +30,8 @@ Internal engineering procedures do not belong in this repository.
 
 The deployable static site is under `public/`.
 
-Production target:
-
-    /var/www/docs.ecurem.cloud/public
+Production deployment is performed to the web root serving
+`docs.ecurem.cloud`.
 
 ## License
 
