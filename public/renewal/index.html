@@ -1,1 +1,50 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Renewal — Ecurem CLM Docs</title><meta name="description" content="Automatiser le renouvellement sans perdre le contrôle du domaine, de l’émission et du déploiement."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header><div class="breadcrumb"><a href="/">Accueil</a> / Renewal</div><main class="article"><span class="eyebrow">RENEWAL</span><h1>Renewal</h1><p class="lead">Automatiser le renouvellement sans perdre le contrôle du domaine, de l’émission et du déploiement.</p><div class="toc"><strong>Dans cette page</strong><a href="#s1">Préparer le renouvellement</a><a href="#s2">Émission</a><a href="#s3">Déploiement</a><a href="#s4">Vérification post-déploiement</a><a href="#s5">Échec</a></div><h2 id="s1">Préparer le renouvellement</h2><p>Confirmez le domaine, la méthode de validation, l’autorité ou fournisseur attendu et la cible de déploiement.</p><h2 id="s2">Émission</h2><p>Utilisez la méthode approuvée par l’organisation et limitez les secrets au périmètre nécessaire.</p><h2 id="s3">Déploiement</h2><p>Un certificat renouvelé n’est utile que s’il est déployé sur la bonne cible. Vérifiez le certificat réellement servi après l’opération.</p><h2 id="s4">Vérification post-déploiement</h2><p>Contrôlez le domaine, l’émetteur, la nouvelle date d’expiration et la chaîne présentée par le service cible.</p><h2 id="s5">Échec</h2><div class='callout warning'>Évitez les relances répétées sans diagnostic. Vérifiez validation du domaine, accès à l’AC ou au DNS, cible et journal du job.</div></main><footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Renewal — Ecurem CLM Docs</title><meta name="description" content="Automatiser le renouvellement sans perdre le contrôle du domaine, de l’émission et du déploiement."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header>
+<div class="breadcrumb"><a href="/">Accueil</a> / Renewal</div>
+<main class="article">
+<span class="eyebrow">RENEWAL</span><h1>Renewal</h1>
+<p class="lead">Passer d’un certificat proche de l’expiration à un certificat réellement émis, déployé et vérifié sur le service cible.</p>
+<div class="toc"><strong>Dans cette page</strong><a href="#prepare">1. Avant de renouveler</a><a href="#dns">2. Compte DNS</a><a href="#policy">3. Politique</a><a href="#workflow">4. Workflow</a><a href="#run">5. Lancer</a><a href="#history">6. Suivre l’historique</a><a href="#deploy">7. Vérifier le déploiement</a><a href="#bulk">8. Renouvellement groupé</a><a href="#errors">9. Dépannage</a></div>
+
+<h2 id="prepare">1. Avant de renouveler</h2>
+<p>Vérifiez quatre éléments : le certificat est bien celui à gérer, le domaine appartient à l’organisation, la validation de domaine fonctionne et le fournisseur/chemin d’émission est configuré.</p>
+<p>Un certificat découvert n’est pas automatiquement un certificat à renouveler. Utilisez les tags et le périmètre de politique pour séparer les actifs gérés des actifs simplement observés.</p>
+
+<h2 id="dns">2. Configurer un compte DNS si nécessaire</h2>
+<p>Le formulaire de compte DNS permet de configurer le fournisseur utilisé par les validations DNS. L’interface actuelle expose notamment l’<strong>Organisation</strong>, le <strong>Type de fournisseur</strong>, un <strong>Nom</strong>, le <strong>Mode d’authentification</strong>, les données d’authentification nécessaires au fournisseur, un éventuel identifiant de zone et l’état actif.</p>
+<div class="callout warning">Les secrets DNS doivent être saisis dans le formulaire sécurisé et ne doivent jamais être copiés dans la documentation, les journaux ou les tickets.</div>
+
+<h2 id="policy">3. Choisir ou créer une politique</h2>
+<p>Une politique Renewal décrit <strong>quand</strong> agir et <strong>quoi faire</strong>. Les propriétés métier comprennent le nom, la description, l’activation, le type de certificat, le déclencheur et sa valeur, l’action, le fournisseur, la méthode de validation, les tentatives, la pré-validation, la validation post-renouvellement, le forçage éventuel, la configuration de workflow et l’organisation.</p>
+<p>Les déclencheurs prévus comprennent : <strong>jours avant expiration</strong>, <strong>niveau de risque</strong>, <strong>validation de domaine</strong> et <strong>manuel seulement</strong>.</p>
+<p>Les actions prévues comprennent : <strong>renouvellement automatique</strong>, <strong>notification seulement</strong>, <strong>révision manuelle</strong> et <strong>validation de domaine</strong>.</p>
+
+<h2 id="workflow">4. Comprendre le workflow</h2>
+<p>Une politique peut contenir des étapes ordonnées. Les types d’étapes prévus comprennent :</p>
+<ul><li>Validation de domaine</li><li>Demande de certificat</li><li>Approbation fournisseur</li><li>Test d’installation</li><li>Notification</li><li>Script personnalisé</li></ul>
+<p>Chaque étape possède un nom, une description, une configuration, un ordre, un indicateur obligatoire/facultatif et un timeout en minutes.</p>
+<p>Un workflow typique est : <code>Validation du domaine → Demande de certificat → Vérification du déploiement</code>.</p>
+
+<h2 id="run">5. Lancer un renouvellement</h2>
+<p>Vous pouvez exécuter les politiques actives ou lancer une politique précise immédiatement. Le système crée une entrée d’historique avant traitement et évite de créer une nouvelle exécution lorsqu’une exécution compatible est déjà en cours pour le certificat.</p>
+<p>Le traitement s’effectue en tâche asynchrone afin que l’interface reste disponible.</p>
+
+<h2 id="history">6. Suivre l’historique</h2>
+<p>L’historique Renewal conserve notamment : certificat, politique, utilisateur, statut, étape courante, progression, début, fin, succès/échec, message d’erreur, ancienne/nouvelle donnée de certificat, données de validation et journal de workflow.</p>
+<p>Utilisez la page de détail pour savoir <strong>à quelle étape</strong> le renouvellement s’est arrêté. Ne vous contentez pas du statut final.</p>
+
+<h2 id="deploy">7. Vérifier le déploiement</h2>
+<p>Après émission, Ecurem CLM peut vérifier si le certificat attendu est réellement observable sur TLS. Un certificat disponible côté fournisseur mais non encore servi par le point d’entrée peut produire un état nécessitant une validation/déploiement.</p>
+<p>Contrôlez :</p>
+<ul><li>le nom DNS interrogé ;</li><li>le port TLS ;</li><li>le numéro de série ou l’empreinte du nouveau certificat ;</li><li>la chaîne servie ;</li><li>la nouvelle date d’expiration.</li></ul>
+<div class="callout"><strong>Important :</strong> « certificat émis » et « certificat déployé » sont deux états différents.</div>
+
+<h2 id="bulk">8. Renouvellement groupé</h2>
+<p>Le formulaire de renouvellement groupé utilise :</p>
+<ul><li><strong>Certificates</strong> : certificats sélectionnés.</li><li><strong>Policy</strong> : politique appliquée.</li><li><strong>Force renewal</strong> : forcer l’exécution même lorsque le déclencheur normal n’est pas atteint.</li></ul>
+<p>Le système lance une tâche asynchrone et redirige vers l’historique.</p>
+<div class="callout warning">Utilisez <strong>Force renewal</strong> avec prudence. Il contourne la décision habituelle de déclenchement, pas les contrôles d’autorisation ni les étapes du workflow.</div>
+
+<h2 id="errors">9. Dépannage</h2>
+<ul><li><strong>Échec de validation</strong> : corrigez DNS/HTTP/compte fournisseur avant de relancer.</li><li><strong>Demande de certificat échouée</strong> : vérifiez fournisseur, compte, domaine et données de politique.</li><li><strong>Certificate available not deployed</strong> : l’émission a produit un certificat mais le service cible ne le sert pas encore.</li><li><strong>Deployment not confirmed</strong> : vérifiez la cible TLS et le mécanisme d’installation.</li><li><strong>Aucune nouvelle exécution</strong> : une exécution peut déjà être active pour le certificat.</li></ul>
+</main>
+<footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>

@@ -1,1 +1,130 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovery — Ecurem CLM Docs</title><meta name="description" content="Découvrir les services TLS et certificats d’un périmètre autorisé sans perdre le contrôle du scope."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header><div class="breadcrumb"><a href="/">Accueil</a> / Discovery</div><main class="article"><span class="eyebrow">DISCOVERY</span><h1>Discovery</h1><p class="lead">Découvrir les services TLS et certificats d’un périmètre autorisé sans perdre le contrôle du scope.</p><div class="toc"><strong>Dans cette page</strong><a href="#s1">Découverte externe</a><a href="#s2">Découverte locale</a><a href="#s3">Cibles et périmètre</a><a href="#s4">Résultats</a><a href="#s5">Bonnes pratiques</a></div><h2 id="s1">Découverte externe</h2><p>La découverte externe observe les services accessibles depuis Internet dans le périmètre défini et aide à identifier des certificats oubliés ou proches de l’expiration.</p><h2 id="s2">Découverte locale</h2><p>Pour les réseaux internes, utilisez l’Agent Discovery afin d’exécuter les scans depuis un environnement autorisé par votre organisation.</p><h2 id="s3">Cibles et périmètre</h2><p>Commencez par un petit nombre de cibles et élargissez progressivement. N’incluez jamais des systèmes pour lesquels vous ne disposez pas d’une autorisation explicite.</p><h2 id="s4">Résultats</h2><p>Revoyez les résultats avant import ou automatisation : ils peuvent contenir des services de test, doublons ou systèmes hors responsabilité de l’équipe.</p><h2 id="s5">Bonnes pratiques</h2><ul><li>documenter le périmètre ;</li><li>coordonner les scans internes ;</li><li>éviter les scans trop larges au départ ;</li><li>valider les résultats avant action de masse.</li></ul></main><footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovery — Ecurem CLM Docs</title><meta name="description" content="Découvrir les services TLS et certificats d’un périmètre autorisé sans perdre le contrôle du scope."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header>
+<div class="breadcrumb"><a href="/">Accueil</a> / Discovery</div>
+<main class="article">
+<span class="eyebrow">DISCOVERY</span>
+<h1>Discovery</h1>
+<p class="lead">Configurer un scan, choisir le bon type de cible, suivre un job et interpréter les certificats réellement observés.</p>
+
+<div class="toc"><strong>Dans cette page</strong>
+<a href="#start">1. Scan rapide ou configuration durable ?</a>
+<a href="#quick">2. Lancer un scan rapide</a>
+<a href="#config">3. Créer une configuration Discovery</a>
+<a href="#types">4. Choisir le type de scan</a>
+<a href="#scope">5. Renseigner les cibles et les ports</a>
+<a href="#limits">6. Régler les limites et timeouts</a>
+<a href="#subdomains">7. Découverte de sous-domaines</a>
+<a href="#jobs">8. Suivre un job</a>
+<a href="#results">9. Lire les résultats</a>
+<a href="#schedule">10. Planification</a>
+<a href="#errors">11. Erreurs fréquentes</a>
+</div>
+
+<h2 id="start">1. Scan rapide ou configuration durable ?</h2>
+<p><strong>Scan rapide</strong> est adapté à un test ponctuel ou à une investigation. Ecurem CLM crée alors automatiquement une configuration manuelle et place immédiatement un job dans la file de traitement.</p>
+<p><strong>Configuration Discovery</strong> est préférable pour un périmètre qui doit être conservé, relancé ou planifié. Vous pouvez y définir le nom, l’organisation, le type de scan, la planification, les cibles, les ports et les limites d’exécution.</p>
+
+<h2 id="quick">2. Lancer un scan rapide</h2>
+<p>Le formulaire <strong>Scan rapide</strong> contient :</p>
+<ul>
+<li><strong>Nom du scan</strong> : nom lisible permettant de retrouver l’exécution.</li>
+<li><strong>Organisation</strong> : seules les organisations accessibles à votre compte sont proposées.</li>
+<li><strong>Type de scan</strong>.</li>
+<li><strong>Cibles</strong> : un domaine, une adresse IP ou un réseau CIDR par ligne.</li>
+<li><strong>Ports TLS</strong> : par défaut <code>443,8443,9443</code>.</li>
+<li><strong>Nombre maximal de cibles</strong> : de 1 à 1000 dans le formulaire de scan rapide, valeur initiale 100.</li>
+<li><strong>Délai d’attente par cible</strong> : de 1 à 60 secondes, valeur initiale 10.</li>
+<li><strong>Découvrir les sous-domaines</strong>.</li>
+</ul>
+<div class="callout"><strong>Exemple domaine :</strong> choisissez un scan de domaines, saisissez <code>example.com</code>, gardez <code>443,8443</code> et activez la découverte des sous-domaines si vous souhaitez que Discovery explore des noms rattachés au domaine.</div>
+<div class="callout"><strong>Exemple réseau :</strong> choisissez un scan réseau et saisissez <code>10.20.30.0/24</code>. Un scan réseau n’accepte pas de nom DNS dans le même formulaire.</div>
+
+<h2 id="config">3. Créer une configuration Discovery</h2>
+<p>Une configuration complète expose les champs suivants :</p>
+<ul>
+<li><strong>Configuration Name</strong> / Nom de configuration.</li>
+<li><strong>Description</strong>.</li>
+<li><strong>Organization</strong>.</li>
+<li><strong>Scan Type</strong>.</li>
+<li><strong>Schedule</strong>.</li>
+<li><strong>Active Configuration</strong>.</li>
+<li><strong>Target Domains</strong>.</li>
+<li><strong>Network Ranges</strong>.</li>
+<li><strong>Ports to Scan</strong>.</li>
+<li><strong>Max Targets per Scan</strong>.</li>
+<li><strong>Delay Between Scans (seconds)</strong>.</li>
+<li><strong>Timeout per Target (seconds)</strong>.</li>
+<li><strong>Scan Common Subdomains</strong>.</li>
+<li><strong>Verify SSL Certificates</strong>.</li>
+</ul>
+<p>Au moins un domaine cible ou une plage réseau doit être renseigné. Une configuration active est enregistrée avec un statut actif ; une configuration désactivée est mise en pause.</p>
+
+<h2 id="types">4. Choisir le type de scan</h2>
+<p>Le type de scan détermine le format accepté dans le périmètre :</p>
+<ul>
+<li><strong>Domain scan</strong> : domaines et noms DNS. Les réseaux CIDR sont rejetés.</li>
+<li><strong>Network scan</strong> : adresses IP/plages CIDR. Les noms de domaine sont rejetés dans le scan rapide.</li>
+<li><strong>Hybrid scan</strong> : selon la configuration de la plateforme, combine l’énumération de noms et les contrôles réseau pour un domaine.</li>
+</ul>
+<p>Ne mélangez pas volontairement des cibles incompatibles : le formulaire valide le périmètre avant de créer le job.</p>
+
+<h2 id="scope">5. Renseigner les cibles et les ports</h2>
+<p><strong>Target Domains</strong> accepte un domaine par ligne ou des valeurs séparées par des virgules, par exemple :</p>
+<p><code>example.com<br>api.example.com</code></p>
+<p><strong>Network Ranges</strong> attend des CIDR, par exemple :</p>
+<p><code>192.168.1.0/24<br>10.10.0.0/16</code></p>
+<p><strong>Ports to Scan</strong> attend une liste séparée par des virgules. Chaque port doit être compris entre 1 et 65535.</p>
+<div class="callout warning"><strong>Périmètre :</strong> n’ajoutez que des domaines, adresses et réseaux pour lesquels votre organisation est autorisée à effectuer une découverte.</div>
+
+<h2 id="limits">6. Régler les limites et timeouts</h2>
+<ul>
+<li><strong>Max Targets per Scan</strong> : limite le nombre de cibles traitées par exécution afin d’éviter une charge excessive. Le formulaire de configuration accepte jusqu’à 10 000, mais une valeur plus petite est recommandée pour les premiers tests.</li>
+<li><strong>Delay Between Scans</strong> : pause entre les cibles, de 0 à 3600 secondes.</li>
+<li><strong>Timeout per Target</strong> : temps maximal attendu pour une cible, de 1 à 300 secondes dans une configuration complète.</li>
+</ul>
+<p>Augmenter le timeout n’améliore pas un service inaccessible : vérifiez d’abord DNS, routage, pare-feu et ports.</p>
+
+<h2 id="subdomains">7. Découverte de sous-domaines</h2>
+<p>Lorsque <strong>Scan Common Subdomains</strong> est activé, Discovery peut enrichir le périmètre à partir des noms trouvés dans le scope. Le moteur exploite notamment les identités DNS observées, les SAN des certificats et, selon le type de scan, des sources comme Certificate Transparency et le crawl HTTP.</p>
+<p>Les nouvelles identités restent bornées par le périmètre racine et les limites de la configuration. Discovery n’est pas conçu pour transformer un domaine autorisé en scan arbitraire d’Internet.</p>
+
+<h2 id="jobs">8. Suivre un job</h2>
+<p>Après lancement, ouvrez le job. Les indicateurs disponibles comprennent notamment :</p>
+<ul>
+<li><strong>Status</strong> : en attente, en cours, terminé, échoué ou annulé.</li>
+<li><strong>Targets scanned</strong>.</li>
+<li><strong>Certificates found</strong>.</li>
+<li><strong>New certificates</strong>.</li>
+<li><strong>Errors count</strong>.</li>
+<li><strong>Started at</strong>.</li>
+<li><strong>Duration</strong>.</li>
+<li><strong>Progress</strong> et cible courante lorsque disponibles.</li>
+<li><strong>Journal du job</strong> pour le détail technique.</li>
+</ul>
+<p>Un job en attente ou en cours peut être annulé. Une même configuration ne doit pas lancer plusieurs jobs simultanés : si un job est déjà en cours, le nouveau lancement est refusé ou différé.</p>
+
+<h2 id="results">9. Lire les résultats</h2>
+<p>Chaque résultat Discovery contient une <strong>cible</strong>, un <strong>port</strong>, un <strong>type de cible</strong> (domaine ou IP), un <strong>statut</strong>, les données du certificat observé et un message d’erreur éventuel.</p>
+<p>Les statuts de résultat comprennent <code>Success</code>, <code>Failed</code>, <code>Timeout</code> et <code>Error</code>.</p>
+<ul>
+<li><strong>Success</strong> : une observation TLS exploitable a été obtenue.</li>
+<li><strong>Timeout</strong> : la cible n’a pas répondu avant le délai.</li>
+<li><strong>Failed/Error</strong> : consultez le message d’erreur et le Journal du job.</li>
+</ul>
+<p>Un certificat observé peut alimenter l’inventaire. Vérifiez cependant le domaine, le port et le contexte avant de considérer qu’un actif découvert doit être géré par Renewal.</p>
+
+<h2 id="schedule">10. Planification</h2>
+<p>Les configurations actives peuvent être exécutées manuellement ou avec une planification. Les intervalles supportés par le planificateur comprennent <strong>hourly</strong>, <strong>daily</strong>, <strong>weekly</strong> et <strong>monthly</strong>.</p>
+<p>Si une configuration possède déjà un job <code>pending</code> ou <code>running</code>, le planificateur ne crée pas un second job concurrent.</p>
+
+<h2 id="errors">11. Erreurs fréquentes</h2>
+<ul>
+<li><strong>« You must specify at least one target domain or network range »</strong> : renseignez au moins une cible.</li>
+<li><strong>Port invalide</strong> : utilisez un entier compris entre 1 et 65535.</li>
+<li><strong>Scan de domaines avec CIDR</strong> : changez le type en scan réseau ou retirez le CIDR.</li>
+<li><strong>Scan réseau avec domaine</strong> : utilisez uniquement des IP/CIDR.</li>
+<li><strong>0 certificat trouvé</strong> : vérifiez le port, la résolution DNS, le routage et la présence réelle d’un service TLS.</li>
+<li><strong>Beaucoup de timeouts</strong> : réduisez le périmètre et vérifiez les flux réseau avant d’augmenter les délais.</li>
+<li><strong>Job déjà en cours</strong> : attendez la fin du job existant ou annulez-le s’il est bloqué.</li>
+</ul>
+</main>
+<footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>

@@ -35,3 +35,7 @@ The deployable static site is under `public/`. Production deployment is performe
 ## License
 
 Original documentation content is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0). See `LICENSE`. Ecurem trademarks and brand assets are excluded from the Creative Commons license unless explicitly stated otherwise.
+
+## Guidance style
+
+Detailed operational guidance is based on the customer-facing Ecurem CLM forms, workflow states and validation rules. Internal administration routes and infrastructure procedures remain outside this public repository.
