@@ -1,1 +1,46 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Réseau &amp; pare-feu — Ecurem CLM Docs</title><meta name="description" content="Préparer la connectivité nécessaire au SaaS, à Discovery et aux intégrations."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header><div class="breadcrumb"><a href="/">Accueil</a> / Réseau &amp; pare-feu</div><main class="article"><span class="eyebrow">RÉSEAU</span><h1>Réseau &amp; pare-feu</h1><p class="lead">Préparer la connectivité nécessaire au SaaS, à Discovery et aux intégrations.</p><div class="toc"><strong>Dans cette page</strong><a href="#s1">Accès utilisateur</a><a href="#s2">Agent Discovery</a><a href="#s3">Scans locaux</a><a href="#s4">Intégrations</a><a href="#s5">Moindre exposition</a></div><h2 id="s1">Accès utilisateur</h2><p>Les utilisateurs accèdent à Ecurem CLM en HTTPS. Les postes doivent pouvoir résoudre le nom de service et établir la connexion TLS.</p><h2 id="s2">Agent Discovery</h2><p>L’Agent doit pouvoir établir une connexion sortante vers Ecurem CLM en HTTPS et atteindre les cibles internes définies.</p><h2 id="s3">Scans locaux</h2><p>Les ports entre l’Agent et les cibles dépendent des services à découvrir. N’ouvrez que les flux nécessaires au périmètre approuvé.</p><h2 id="s4">Intégrations</h2><p>Les intégrations DNS, AC, courriel ou autres services externes peuvent nécessiter une connectivité sortante supplémentaire selon le fournisseur.</p><h2 id="s5">Moindre exposition</h2><div class='callout'>N’ouvrez pas de ports entrants vers l’Agent uniquement pour son fonctionnement avec le SaaS si votre architecture ne l’exige pas.</div></main><footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Réseau &amp; pare-feu — Ecurem CLM Docs</title><meta name="description" content="Préparer la connectivité nécessaire au SaaS, à Discovery et aux intégrations."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header>
+<div class="breadcrumb"><a href="/">Accueil</a> / Réseau & pare-feu</div>
+<main class="article">
+<span class="eyebrow">RÉSEAU</span><h1>Réseau & pare-feu</h1>
+<p class="lead">Préparer uniquement les flux nécessaires à l’utilisation du SaaS et, si activé, aux scans locaux via l’Agent Discovery.</p>
+
+<div class="toc"><strong>Dans cette page</strong>
+<a href="#browser">1. Accès au SaaS</a>
+<a href="#agent">2. Agent Discovery</a>
+<a href="#targets">3. Flux vers les cibles</a>
+<a href="#dns">4. DNS et temps</a>
+<a href="#proxy">5. Proxy et filtrage</a>
+<a href="#checklist">6. Checklist</a>
+</div>
+
+<h2 id="browser">1. Accès au SaaS</h2>
+<p>Les utilisateurs accèdent à Ecurem CLM en <strong>HTTPS</strong>. Le poste client doit pouvoir :</p>
+<ul><li>résoudre <code>clm.ecurem.cloud</code> ;</li><li>établir une connexion HTTPS sortante vers le port 443 ;</li><li>faire confiance à la chaîne TLS présentée par le service.</li></ul>
+
+<h2 id="agent">2. Agent Discovery</h2>
+<p>L’Agent Discovery communique avec le SaaS par une connexion <strong>sortante HTTPS</strong>. Il n’est pas nécessaire d’exposer arbitrairement l’Agent en entrée depuis Internet.</p>
+<p>L’Agent doit aussi pouvoir résoudre le nom du service Ecurem CLM et conserver une horloge système correcte afin d’éviter des problèmes d’authentification ou de TLS.</p>
+
+<h2 id="targets">3. Flux vers les cibles</h2>
+<p>Pour un scan local, l’Agent initie les connexions vers les actifs du périmètre approuvé. Les ports dépendent des services que vous choisissez de scanner.</p>
+<p>Ces ports sont des <strong>destinations de scan</strong>, pas des ports à ouvrir en entrée vers la plateforme SaaS.</p>
+<div class="callout"><strong>Exemple :</strong> si une configuration locale cible <code>10.20.30.0/24</code> sur les ports <code>443,8443</code>, autorisez l’Agent à joindre ce CIDR sur ces ports uniquement.</div>
+
+<h2 id="dns">4. DNS et temps</h2>
+<ul><li><strong>DNS</strong> : nécessaire pour résoudre les FQDN et le service SaaS.</li><li><strong>Temps/NTP</strong> : fortement recommandé pour la fiabilité TLS, les journaux et les jetons d’authentification.</li></ul>
+
+<h2 id="proxy">5. Proxy et filtrage</h2>
+<p>Si votre organisation utilise un proxy ou une liste d’autorisation de domaines, documentez les règles nécessaires avant le déploiement de l’Agent. Évitez les règles « any/any » lorsque le besoin peut être limité au SaaS et aux cibles autorisées.</p>
+
+<h2 id="checklist">6. Checklist</h2>
+<ul>
+<li>Résolution DNS du SaaS : OK.</li>
+<li>HTTPS sortant 443 vers Ecurem CLM : OK.</li>
+<li>Horloge/NTP : OK.</li>
+<li>Agent visible en ligne : OK.</li>
+<li>CIDR/FQDN de scan approuvés : OK.</li>
+<li>Ports cibles approuvés : OK.</li>
+<li>Aucun port entrant inutile ouvert vers l’Agent : OK.</li>
+</ul>
+</main>
+<footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>

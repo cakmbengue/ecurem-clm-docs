@@ -1,1 +1,63 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Assistant IA — Ecurem CLM Docs</title><meta name="description" content="Utiliser l’assistant comme aide à la compréhension et à l’exploitation, sans lui déléguer la gouvernance."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header><div class="breadcrumb"><a href="/">Accueil</a> / Assistant IA</div><main class="article"><span class="eyebrow">AIDA</span><h1>Assistant IA</h1><p class="lead">Utiliser l’assistant comme aide à la compréhension et à l’exploitation, sans lui déléguer la gouvernance.</p><div class="toc"><strong>Dans cette page</strong><a href="#s1">Rôle</a><a href="#s2">Données organisationnelles</a><a href="#s3">Validation humaine</a><a href="#s4">Bon usage</a></div><h2 id="s1">Rôle</h2><p>L’assistant aide à comprendre l’inventaire, les expirations, Discovery, Renewal et d’autres informations disponibles dans le contexte autorisé de l’utilisateur.</p><h2 id="s2">Données organisationnelles</h2><p>Utilisez l’assistant dans le contexte de votre organisation et évitez d’y saisir des secrets ou identifiants inutiles.</p><h2 id="s3">Validation humaine</h2><p>Les réponses sont une aide. Les actions sensibles, décisions de sécurité et changements opérationnels doivent être validés par une personne autorisée.</p><h2 id="s4">Bon usage</h2><ul><li>poser une question précise ;</li><li>vérifier les objets et dates cités ;</li><li>utiliser les écrans de la plateforme comme source opérationnelle ;</li><li>ne jamais coller un mot de passe, une clé privée ou un token.</li></ul></main><footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Assistant IA — Ecurem CLM Docs</title><meta name="description" content="Utiliser l’assistant comme aide à la compréhension et à l’exploitation, sans lui déléguer la gouvernance."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header>
+<div class="breadcrumb"><a href="/">Accueil</a> / Assistant IA</div>
+<main class="article">
+<span class="eyebrow">ASSISTANT IA</span><h1>Assistant IA</h1>
+<p class="lead">Interroger votre environnement Ecurem CLM en langage naturel, dans le périmètre de l’organisation active et avec des outils en lecture seule.</p>
+
+<div class="toc"><strong>Dans cette page</strong>
+<a href="#scope">1. Ce qu’Aida peut consulter</a>
+<a href="#conversation">2. Utiliser une conversation</a>
+<a href="#questions">3. Exemples de questions utiles</a>
+<a href="#evidence">4. Comment lire une réponse</a>
+<a href="#security">5. Sécurité et confidentialité opérationnelle</a>
+<a href="#limits">6. Limites et quotas</a>
+</div>
+
+<h2 id="scope">1. Ce qu’Aida peut consulter</h2>
+<p>L’Assistant Aida travaille dans le contexte de <strong>l’organisation actuellement connectée</strong>. Le serveur fixe ce contexte : l’utilisateur ne choisit pas un identifiant d’organisation dans le prompt.</p>
+<p>Les outils en lecture seule de l’Assistant peuvent notamment l’aider à expliquer :</p>
+<ul>
+<li>résumé de l’Inventaire et certificats proches de l’expiration ;</li>
+<li>détails d’un certificat, algorithmes, taille de clé, confiance, TLS, classification cryptographique et préparation PQC ;</li>
+<li>configurations, jobs, résultats et Agents Discovery ;</li>
+<li>politiques Renewal, historique et tentatives de validation de domaine ;</li>
+<li>campagnes, contrôles, constats et remédiations de conformité ;</li>
+<li>notifications et préférences accessibles à l’utilisateur ;</li>
+<li>abonnement, fonctionnalités et limites de l’organisation ;</li>
+<li>résumé PKI Client : autorités, profils, demandes, certificats émis, révocation, CRL et OCSP.</li>
+</ul>
+
+<h2 id="conversation">2. Utiliser une conversation</h2>
+<p>Cliquez sur <strong>Nouvelle conversation</strong>, puis posez une question précise. Les conversations sont persistantes et rattachées à votre utilisateur et à votre organisation.</p>
+<p>Exemples de bonne formulation :</p>
+<ul>
+<li>« Quels certificats expirent dans les 30 prochains jours ? »</li>
+<li>« Explique pourquoi ce certificat est classé critique. »</li>
+<li>« Quel est le statut de mon dernier job Discovery ? »</li>
+<li>« Quels sont les domaines dont la validation a échoué ? »</li>
+<li>« Résume mes politiques Renewal actives. »</li>
+<li>« Quelle est ma visibilité post-quantique actuelle ? »</li>
+</ul>
+
+<h2 id="questions">3. Exemples de questions utiles</h2>
+<p>Pour obtenir une réponse exploitable, donnez le nom du domaine, du certificat, de la configuration ou de la politique lorsque vous le connaissez.</p>
+<div class="callout"><strong>Exemple :</strong> « Pour <code>api.example.ca</code>, explique l’algorithme de signature, la taille de clé, la date d’expiration et les raisons du score de sécurité. »</div>
+<p>Aida peut aussi expliquer les formulaires client autorisés et le rôle de leurs champs, sans afficher les valeurs secrètes enregistrées.</p>
+
+<h2 id="evidence">4. Comment lire une réponse</h2>
+<p>L’Assistant doit utiliser les données renvoyées par les outils avant d’affirmer quelque chose sur votre Inventaire, Discovery, Renewal, conformité ou PKI. Lorsqu’une preuve manque, la bonne réponse est de signaler que l’information n’est pas disponible plutôt que de l’inventer.</p>
+<p>Pour une décision opérationnelle, ouvrez ensuite l’écran source correspondant dans Ecurem CLM afin de confirmer le job, le certificat, la politique ou le constat cité.</p>
+
+<h2 id="security">5. Sécurité et confidentialité opérationnelle</h2>
+<ul>
+<li>L’Assistant est limité à l’organisation active.</li>
+<li>Les outils exposés au modèle sont en lecture seule pour les fonctions documentées ici.</li>
+<li>Un texte contenu dans un certificat, une notification ou une métadonnée n’est jamais traité comme une autorisation.</li>
+<li>Ne saisissez jamais de mot de passe, clé privée, token API ou secret DNS dans la conversation.</li>
+<li>Les contrôles Django, multi-tenant et de fonctionnalité restent appliqués côté serveur.</li>
+</ul>
+
+<h2 id="limits">6. Limites et quotas</h2>
+<p>La plateforme peut appliquer des limites de messages ou de conversations selon le plan. Lorsque la limite est atteinte, l’interface l’indique. Les limites exactes dépendent de l’abonnement actif et peuvent évoluer.</p>
+</main>
+<footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>

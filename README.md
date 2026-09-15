@@ -39,3 +39,7 @@ Original documentation content is licensed under Creative Commons Attribution-No
 ## Guidance style
 
 Detailed operational guidance is based on the customer-facing Ecurem CLM forms, workflow states and validation rules. Internal administration routes and infrastructure procedures remain outside this public repository.
+
+## Documentation coverage
+
+The current public baseline covers Inventory, Discovery, Discovery Agent, domain validation, Renewal, Renewal policies, tags, network/firewall requirements, Security & trust, AI Assistant, Reports & compliance, Client PKI, troubleshooting and FAQ in French and English.

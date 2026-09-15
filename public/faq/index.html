@@ -1,1 +1,45 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Questions fréquentes — Ecurem CLM Docs</title><meta name="description" content="Réponses courtes aux questions les plus courantes sur Ecurem CLM."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header><div class="breadcrumb"><a href="/">Accueil</a> / Questions fréquentes</div><main class="article"><span class="eyebrow">FAQ</span><h1>Questions fréquentes</h1><p class="lead">Réponses courtes aux questions les plus courantes sur Ecurem CLM.</p><div class="toc"><strong>Dans cette page</strong><a href="#s1">Ecurem CLM remplace-t-il mon autorité de certification ?</a><a href="#s2">Puis-je découvrir des certificats internes ?</a><a href="#s3">Puis-je lancer des actions en masse ?</a><a href="#s4">Dois-je donner une clé privée au support ?</a><a href="#s5">Où se trouve le guide Ecurem ACM ?</a></div><h2 id="s1">Ecurem CLM remplace-t-il mon autorité de certification ?</h2><p>Pas nécessairement. Ecurem CLM orchestre et gouverne le cycle de vie des certificats et peut s’intégrer à des autorités ou fournisseurs selon votre architecture.</p><h2 id="s2">Puis-je découvrir des certificats internes ?</h2><p>Oui, lorsque le périmètre est autorisé et qu’un Agent Discovery est utilisé dans le réseau approprié.</p><h2 id="s3">Puis-je lancer des actions en masse ?</h2><p>Les fonctions de sélection et ciblage facilitent les opérations groupées. Vérifiez toujours le périmètre avant confirmation.</p><h2 id="s4">Dois-je donner une clé privée au support ?</h2><p>Non. Ne transmettez jamais de clé privée, mot de passe ou token dans une demande de support.</p><h2 id="s5">Où se trouve le guide Ecurem ACM ?</h2><p>Le guide Ecurem ACM reste disponible sur <a href='https://ecurem.cloud/guide'>ecurem.cloud/guide</a>. Cette documentation est dédiée à Ecurem CLM SaaS.</p></main><footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Questions fréquentes — Ecurem CLM Docs</title><meta name="description" content="Réponses courtes aux questions les plus courantes sur Ecurem CLM."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header>
+<div class="breadcrumb"><a href="/">Accueil</a> / FAQ</div>
+<main class="article">
+<span class="eyebrow">FAQ</span><h1>Questions fréquentes</h1>
+<p class="lead">Réponses opérationnelles aux questions qui reviennent le plus souvent lors de l’utilisation d’Ecurem CLM.</p>
+
+<div class="toc"><strong>Dans cette page</strong>
+<a href="#inventory">Inventaire</a><a href="#discovery">Discovery</a><a href="#agent">Agent</a><a href="#renewal">Renewal</a><a href="#pki">PKI</a><a href="#reports">Rapports</a><a href="#ai">Assistant IA</a><a href="#security">Sécurité</a>
+</div>
+
+<h2 id="inventory">Inventaire</h2>
+<h3>Un certificat découvert est-il automatiquement géré ?</h3><p>Non. Discovery apporte de la visibilité. Utilisez l’Inventaire, les tags et vos processus internes pour décider quels actifs doivent être gérés par Renewal.</p>
+<h3>Pourquoi un certificat apparaît-il plusieurs fois ?</h3><p>Un même certificat peut être observé sur plusieurs cibles ou ports. Vérifiez le contexte d’observation avant de conclure à un doublon métier.</p>
+
+<h2 id="discovery">Discovery</h2>
+<h3>Puis-je scanner n’importe quel domaine ou réseau ?</h3><p>Non. Le périmètre doit être autorisé par votre organisation.</p>
+<h3>Pourquoi mon scan trouve 0 certificat ?</h3><p>Vérifiez DNS, route, pare-feu, port cible et présence réelle d’un service TLS.</p>
+<h3>Puis-je planifier un scan ?</h3><p>Oui. Les configurations actives peuvent être exécutées manuellement ou planifiées selon les intervalles disponibles.</p>
+
+<h2 id="agent">Agent Discovery</h2>
+<h3>Dois-je ouvrir un port entrant Internet vers l’Agent ?</h3><p>Non pour la communication normale avec le SaaS : l’Agent utilise une connexion sortante HTTPS. Il doit en revanche joindre les cibles internes sur les ports configurés.</p>
+<h3>Pourquoi mon Agent est hors ligne ?</h3><p>Vérifiez le service local, DNS, HTTPS sortant, horloge système et jeton d’enrôlement/authentification.</p>
+
+<h2 id="renewal">Renewal</h2>
+<h3>Émission et déploiement sont-ils la même chose ?</h3><p>Non. Un certificat peut être émis par le fournisseur mais ne pas encore être servi par l’application cible. La vérification post-renouvellement sert à confirmer le déploiement.</p>
+<h3>À quoi sert « Forcer le renouvellement » ?</h3><p>À lancer une exécution même lorsque le déclencheur normal de la politique n’est pas atteint. Utilisez cette option avec prudence.</p>
+
+<h2 id="pki">PKI Client</h2>
+<h3>Ecurem CLM peut-il gérer une racine hors ligne ?</h3><p>Oui. Le module permet de référencer/importer une racine hors ligne et d’utiliser des autorités opérationnelles pour l’émission quotidienne.</p>
+<h3>Pourquoi une autorité n’est-elle pas proposée pour signer ?</h3><p>Vérifiez son organisation, son état actif, sa révocation, son type Root/Intermediate/Issuing et les contraintes X.509 applicables.</p>
+
+<h2 id="reports">Rapports</h2>
+<h3>« Non évalué » signifie-t-il conforme ?</h3><p>Non. Cela signifie que les preuves nécessaires ne permettent pas de conclure.</p>
+<h3>Quels exports sont disponibles pour une campagne ?</h3><p>CSV de campagne, CSV de preuves et rapport PDF sont prévus dans le workflow client de conformité.</p>
+
+<h2 id="ai">Assistant IA</h2>
+<h3>Aida peut-elle modifier mes certificats ?</h3><p>Les outils documentés ici sont en lecture seule. Aida sert à expliquer et analyser les données accessibles dans l’organisation active.</p>
+<h3>Puis-je lui donner un token API pour qu’elle teste une intégration ?</h3><p>Non. Ne fournissez jamais de mot de passe, token, clé privée ou secret dans une conversation.</p>
+
+<h2 id="security">Sécurité</h2>
+<h3>La 2FA est-elle obligatoire ?</h3><p>Oui. L’interface de sécurité du compte indique que l’authentification à deux facteurs est obligatoire.</p>
+<h3>Que faire si je perds mon authentificateur ?</h3><p>Utilisez un code de secours à usage unique conservé en lieu sûr. Ne transmettez pas ces codes par courriel.</p>
+<h3>Où se trouve le guide Ecurem ACM ?</h3><p>Le guide ACM reste sur <a href="https://ecurem.cloud/guide">ecurem.cloud/guide</a>. <code>docs.ecurem.cloud</code> est dédié à Ecurem CLM SaaS.</p>
+</main>
+<footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>

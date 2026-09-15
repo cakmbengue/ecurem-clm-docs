@@ -1,1 +1,58 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rapports — Ecurem CLM Docs</title><meta name="description" content="Utiliser les rapports pour partager une vue exploitable de l’état des certificats et opérations."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header><div class="breadcrumb"><a href="/">Accueil</a> / Rapports</div><main class="article"><span class="eyebrow">RAPPORTS</span><h1>Rapports</h1><p class="lead">Utiliser les rapports pour partager une vue exploitable de l’état des certificats et opérations.</p><div class="toc"><strong>Dans cette page</strong><a href="#s1">Objectif</a><a href="#s2">Avant diffusion</a><a href="#s3">Usage gouvernance</a></div><h2 id="s1">Objectif</h2><p>Les rapports permettent de communiquer une vue synthétique des actifs, expirations, résultats de découverte et opérations de renouvellement.</p><h2 id="s2">Avant diffusion</h2><p>Vérifiez le périmètre organisationnel et la sensibilité des données avant partage hors de l’équipe.</p><h2 id="s3">Usage gouvernance</h2><p>Ils peuvent soutenir les revues opérationnelles, suivis de risque, audits internes et priorisation des actions.</p></main><footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rapports — Ecurem CLM Docs</title><meta name="description" content="Utiliser les rapports pour partager une vue exploitable de l’état des certificats et opérations."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header>
+<div class="breadcrumb"><a href="/">Accueil</a> / Rapports</div>
+<main class="article">
+<span class="eyebrow">RAPPORTS</span><h1>Rapports & conformité</h1>
+<p class="lead">Transformer l’Inventaire cryptographique en évaluations, constats, preuves et exports utilisables pour les revues de sécurité.</p>
+
+<div class="toc"><strong>Dans cette page</strong>
+<a href="#dashboard">1. Tableau de bord</a>
+<a href="#scope">2. Périmètres</a>
+<a href="#assessment">3. Lancer une évaluation</a>
+<a href="#metrics">4. Lire les indicateurs</a>
+<a href="#results">5. Contrôles et constats</a>
+<a href="#exports">6. Exports</a>
+<a href="#interpret">7. Interpréter correctement</a>
+</div>
+
+<h2 id="dashboard">1. Tableau de bord</h2>
+<p>Le menu <strong>Rapports</strong> mène au tableau de bord de conformité et de préparation cryptographique. La vue est limitée à l’organisation active.</p>
+<p>Vous y retrouvez notamment les actions <strong>Gérer les périmètres</strong> et <strong>Lancer une évaluation</strong>.</p>
+
+<h2 id="scope">2. Périmètres</h2>
+<p>Un périmètre définit les actifs inclus dans une évaluation. Avant de lancer une campagne, vérifiez que le périmètre correspond bien au service, à l’environnement ou à l’organisation que vous souhaitez mesurer.</p>
+<p>Un bon périmètre évite de mélanger certificats de démonstration, préproduction et production dans la même conclusion.</p>
+
+<h2 id="assessment">3. Lancer une évaluation</h2>
+<p>Une évaluation produit une campagne de conformité sur les actifs du périmètre choisi. Les contrôles disponibles analysent les données réellement présentes dans l’Inventaire et les preuves cryptographiques observées.</p>
+<p>Une campagne peut ensuite être ouverte pour consulter ses contrôles, preuves, constats et actions de remédiation.</p>
+
+<h2 id="metrics">4. Lire les indicateurs</h2>
+<p>Le tableau de bord peut présenter notamment :</p>
+<ul>
+<li><strong>Certificats évaluables</strong> ;</li>
+<li><strong>Certificats expirés</strong> ;</li>
+<li><strong>Algorithmes faibles</strong> ;</li>
+<li><strong>Chaînes non fiables</strong> ;</li>
+<li><strong>Visibilité post-quantique</strong> ;</li>
+<li><strong>Actions ouvertes</strong>.</li>
+</ul>
+<p>Ces indicateurs dépendent des preuves disponibles. Par exemple, si la version TLS ou la taille de clé n’est pas connue pour un actif, un contrôle peut être marqué non évalué plutôt que conforme.</p>
+
+<h2 id="results">5. Contrôles et constats</h2>
+<p>Pour chaque contrôle, examinez le statut, le résumé, le niveau d’assurance et les preuves associées. Les constats servent à identifier les éléments nécessitant une revue ou une remédiation.</p>
+<p>Les informations de préparation post-quantique distinguent les observations classiques, hybrides et post-quantiques lorsqu’elles sont techniquement démontrables.</p>
+
+<h2 id="exports">6. Exports</h2>
+<p>Une campagne client peut être exportée sous plusieurs formes :</p>
+<ul>
+<li><strong>CSV de campagne</strong> pour l’analyse tabulaire ;</li>
+<li><strong>CSV de preuves</strong> pour examiner les éléments techniques ;</li>
+<li><strong>Rapport PDF</strong> pour une diffusion structurée.</li>
+</ul>
+<p>D’autres rapports de conformité peuvent également être générés et téléchargés depuis les écrans prévus à cet effet.</p>
+
+<h2 id="interpret">7. Interpréter correctement</h2>
+<div class="callout warning"><strong>Important :</strong> absence de preuve ≠ conformité. Un contrôle « non évalué » signifie que les données nécessaires ne permettent pas de conclure.</div>
+<p>Avant de partager un rapport, vérifiez l’organisation, le périmètre, la date de collecte et les actifs inclus.</p>
+</main>
+<footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>
