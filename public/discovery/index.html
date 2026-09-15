@@ -41,20 +41,20 @@
 <h2 id="config">3. Créer une configuration Discovery</h2>
 <p>Une configuration complète expose les champs suivants :</p>
 <ul>
-<li><strong>Configuration Name</strong> / Nom de configuration.</li>
+<li><strong>Nom de la configuration</strong>.</li>
 <li><strong>Description</strong>.</li>
-<li><strong>Organization</strong>.</li>
-<li><strong>Scan Type</strong>.</li>
-<li><strong>Schedule</strong>.</li>
-<li><strong>Active Configuration</strong>.</li>
-<li><strong>Target Domains</strong>.</li>
-<li><strong>Network Ranges</strong>.</li>
-<li><strong>Ports to Scan</strong>.</li>
-<li><strong>Max Targets per Scan</strong>.</li>
-<li><strong>Delay Between Scans (seconds)</strong>.</li>
-<li><strong>Timeout per Target (seconds)</strong>.</li>
-<li><strong>Scan Common Subdomains</strong>.</li>
-<li><strong>Verify SSL Certificates</strong>.</li>
+<li><strong>Organisation</strong>.</li>
+<li><strong>Type de scan</strong>.</li>
+<li><strong>Planification</strong>.</li>
+<li><strong>Configuration active</strong>.</li>
+<li><strong>Domaines cibles</strong>.</li>
+<li><strong>Plages réseau</strong>.</li>
+<li><strong>Ports à scanner</strong>.</li>
+<li><strong>Max cibles par scan</strong>.</li>
+<li><strong>Délai entre les scans (secondes)</strong>.</li>
+<li><strong>Timeout par cible (secondes)</strong>.</li>
+<li><strong>Découvrir les sous-domaines courants</strong>.</li>
+<li><strong>Vérifier les certificats SSL</strong>.</li>
 </ul>
 <p>Au moins un domaine cible ou une plage réseau doit être renseigné. Une configuration active est enregistrée avec un statut actif ; une configuration désactivée est mise en pause.</p>
 
@@ -68,43 +68,43 @@
 <p>Ne mélangez pas volontairement des cibles incompatibles : le formulaire valide le périmètre avant de créer le job.</p>
 
 <h2 id="scope">5. Renseigner les cibles et les ports</h2>
-<p><strong>Target Domains</strong> accepte un domaine par ligne ou des valeurs séparées par des virgules, par exemple :</p>
+<p><strong>Domaines cibles</strong> accepte un domaine par ligne ou des valeurs séparées par des virgules, par exemple :</p>
 <p><code>example.com<br>api.example.com</code></p>
-<p><strong>Network Ranges</strong> attend des CIDR, par exemple :</p>
+<p><strong>Plages réseau</strong> attend des CIDR, par exemple :</p>
 <p><code>192.168.1.0/24<br>10.10.0.0/16</code></p>
-<p><strong>Ports to Scan</strong> attend une liste séparée par des virgules. Chaque port doit être compris entre 1 et 65535.</p>
+<p><strong>Ports à scanner</strong> attend une liste séparée par des virgules. Chaque port doit être compris entre 1 et 65535.</p>
 <div class="callout warning"><strong>Périmètre :</strong> n’ajoutez que des domaines, adresses et réseaux pour lesquels votre organisation est autorisée à effectuer une découverte.</div>
 
 <h2 id="limits">6. Régler les limites et timeouts</h2>
 <ul>
-<li><strong>Max Targets per Scan</strong> : limite le nombre de cibles traitées par exécution afin d’éviter une charge excessive. Le formulaire de configuration accepte jusqu’à 10 000, mais une valeur plus petite est recommandée pour les premiers tests.</li>
-<li><strong>Delay Between Scans</strong> : pause entre les cibles, de 0 à 3600 secondes.</li>
-<li><strong>Timeout per Target</strong> : temps maximal attendu pour une cible, de 1 à 300 secondes dans une configuration complète.</li>
+<li><strong>Max cibles par scan</strong> : limite le nombre de cibles traitées par exécution afin d’éviter une charge excessive. Le formulaire de configuration accepte jusqu’à 10 000, mais une valeur plus petite est recommandée pour les premiers tests.</li>
+<li><strong>Délai entre les scans</strong> : pause entre les cibles, de 0 à 3600 secondes.</li>
+<li><strong>Timeout par cible</strong> : temps maximal attendu pour une cible, de 1 à 300 secondes dans une configuration complète.</li>
 </ul>
 <p>Augmenter le timeout n’améliore pas un service inaccessible : vérifiez d’abord DNS, routage, pare-feu et ports.</p>
 
 <h2 id="subdomains">7. Découverte de sous-domaines</h2>
-<p>Lorsque <strong>Scan Common Subdomains</strong> est activé, Discovery peut enrichir le périmètre à partir des noms trouvés dans le scope. Le moteur exploite notamment les identités DNS observées, les SAN des certificats et, selon le type de scan, des sources comme Certificate Transparency et le crawl HTTP.</p>
+<p>Lorsque <strong>Découvrir les sous-domaines courants</strong> est activé, Discovery peut enrichir le périmètre à partir des noms trouvés dans le scope. Le moteur exploite notamment les identités DNS observées, les SAN des certificats et, selon le type de scan, des sources comme Certificate Transparency et le crawl HTTP.</p>
 <p>Les nouvelles identités restent bornées par le périmètre racine et les limites de la configuration. Discovery n’est pas conçu pour transformer un domaine autorisé en scan arbitraire d’Internet.</p>
 
 <h2 id="jobs">8. Suivre un job</h2>
 <p>Après lancement, ouvrez le job. Les indicateurs disponibles comprennent notamment :</p>
 <ul>
-<li><strong>Status</strong> : en attente, en cours, terminé, échoué ou annulé.</li>
-<li><strong>Targets scanned</strong>.</li>
-<li><strong>Certificates found</strong>.</li>
-<li><strong>New certificates</strong>.</li>
-<li><strong>Errors count</strong>.</li>
-<li><strong>Started at</strong>.</li>
-<li><strong>Duration</strong>.</li>
-<li><strong>Progress</strong> et cible courante lorsque disponibles.</li>
+<li><strong>Statut</strong> : en attente, en cours, terminé, échoué ou annulé.</li>
+<li><strong>Cibles analysées</strong>.</li>
+<li><strong>Certificats trouvés</strong>.</li>
+<li><strong>Nouveaux certificats</strong>.</li>
+<li><strong>Nombre d’erreurs</strong>.</li>
+<li><strong>Démarré le</strong>.</li>
+<li><strong>Durée</strong>.</li>
+<li><strong>Progression</strong> et cible courante lorsque disponibles.</li>
 <li><strong>Journal du job</strong> pour le détail technique.</li>
 </ul>
 <p>Un job en attente ou en cours peut être annulé. Une même configuration ne doit pas lancer plusieurs jobs simultanés : si un job est déjà en cours, le nouveau lancement est refusé ou différé.</p>
 
 <h2 id="results">9. Lire les résultats</h2>
 <p>Chaque résultat Discovery contient une <strong>cible</strong>, un <strong>port</strong>, un <strong>type de cible</strong> (domaine ou IP), un <strong>statut</strong>, les données du certificat observé et un message d’erreur éventuel.</p>
-<p>Les statuts de résultat comprennent <code>Success</code>, <code>Failed</code>, <code>Timeout</code> et <code>Error</code>.</p>
+<p>Les statuts de résultat comprennent <code>Succès</code>, <code>Échoué</code>, <code>Délai dépassé</code> et <code>Erreur</code>.</p>
 <ul>
 <li><strong>Success</strong> : une observation TLS exploitable a été obtenue.</li>
 <li><strong>Timeout</strong> : la cible n’a pas répondu avant le délai.</li>

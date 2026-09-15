@@ -40,11 +40,11 @@
 
 <h2 id="bulk">8. Renouvellement groupé</h2>
 <p>Le formulaire de renouvellement groupé utilise :</p>
-<ul><li><strong>Certificates</strong> : certificats sélectionnés.</li><li><strong>Policy</strong> : politique appliquée.</li><li><strong>Force renewal</strong> : forcer l’exécution même lorsque le déclencheur normal n’est pas atteint.</li></ul>
+<ul><li><strong>Certificats</strong> : certificats sélectionnés.</li><li><strong>Politique</strong> : politique appliquée.</li><li><strong>Forcer le renouvellement</strong> : forcer l’exécution même lorsque le déclencheur normal n’est pas atteint.</li></ul>
 <p>Le système lance une tâche asynchrone et redirige vers l’historique.</p>
-<div class="callout warning">Utilisez <strong>Force renewal</strong> avec prudence. Il contourne la décision habituelle de déclenchement, pas les contrôles d’autorisation ni les étapes du workflow.</div>
+<div class="callout warning">Utilisez <strong>Forcer le renouvellement</strong> avec prudence. Il contourne la décision habituelle de déclenchement, pas les contrôles d’autorisation ni les étapes du workflow.</div>
 
 <h2 id="errors">9. Dépannage</h2>
-<ul><li><strong>Échec de validation</strong> : corrigez DNS/HTTP/compte fournisseur avant de relancer.</li><li><strong>Demande de certificat échouée</strong> : vérifiez fournisseur, compte, domaine et données de politique.</li><li><strong>Certificate available not deployed</strong> : l’émission a produit un certificat mais le service cible ne le sert pas encore.</li><li><strong>Deployment not confirmed</strong> : vérifiez la cible TLS et le mécanisme d’installation.</li><li><strong>Aucune nouvelle exécution</strong> : une exécution peut déjà être active pour le certificat.</li></ul>
+<ul><li><strong>Échec de validation</strong> : corrigez DNS/HTTP/compte fournisseur avant de relancer.</li><li><strong>Demande de certificat échouée</strong> : vérifiez fournisseur, compte, domaine et données de politique.</li><li><strong>Certificat disponible mais non déployé</strong> : l’émission a produit un certificat mais le service cible ne le sert pas encore.</li><li><strong>Déploiement non confirmé</strong> : vérifiez la cible TLS et le mécanisme d’installation.</li><li><strong>Aucune nouvelle exécution</strong> : une exécution peut déjà être active pour le certificat.</li></ul>
 </main>
 <footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>
