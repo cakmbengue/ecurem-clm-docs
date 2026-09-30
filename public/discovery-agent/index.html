@@ -1,26 +1,31 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Agent Discovery — Ecurem CLM Docs</title><meta name="description" content="Déployer et exploiter l’Agent Discovery pour la visibilité sur les réseaux internes."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header>
-<div class="breadcrumb"><a href="/">Accueil</a> / Agent Discovery</div>
-<main class="article">
-<span class="eyebrow">DISCOVERY</span>
-<h1>Agent Discovery</h1>
-<p class="lead">Installer un point d’exécution dans le réseau client pour les scans locaux et superviser son état depuis Ecurem CLM.</p>
-<div class="toc"><strong>Dans cette page</strong>
-<a href="#why">1. Quand utiliser l’Agent</a><a href="#enroll">2. Enrôlement</a><a href="#status">3. Vérifier l’état</a><a href="#local">4. Créer un scan local</a><a href="#network">5. Réseau et sécurité</a><a href="#trouble">6. Dépannage</a>
-</div>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovery Agent — Ecurem CLM Docs</title><meta name="description" content="Déployer Discovery Agent pour les scans internes de certificats et la découverte cryptographique locale avec CBOM CycloneDX 1.7."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a href="/en/">EN</a></div></div></nav></header>
+<div class="breadcrumb"><a href="/">Accueil</a> / Discovery Agent</div>
+<main class="article"><span class="eyebrow">DISCOVERY</span><h1>Discovery Agent</h1>
+<p class="lead">Discovery Agent étend Ecurem CLM aux réseaux internes : il exécute les scans locaux de certificats et, lorsque la fonction est activée, la découverte cryptographique locale avec transmission contrôlée d’un CBOM CycloneDX 1.7.</p>
+<div class="toc"><strong>Dans cette page</strong><a href="#why">1. Quand utiliser l’Agent</a><a href="#enroll">2. Enrôlement</a><a href="#status">3. État et heartbeat</a><a href="#tls">4. Scans locaux TLS</a><a href="#crypto">5. Découverte cryptographique locale</a><a href="#cbom">6. CBOM CycloneDX 1.7</a><a href="#queue">7. File locale et reconnexion</a><a href="#security">8. Réseau et sécurité</a><a href="#trouble">9. Dépannage</a></div>
 <h2 id="why">1. Quand utiliser l’Agent</h2>
-<p>Utilisez l’Agent pour les actifs qui ne sont pas directement accessibles depuis le SaaS : réseaux privés, adresses RFC1918, services internes ou environnements segmentés.</p>
+<p>Utilisez Discovery Agent pour les réseaux privés, adresses RFC1918, services internes ou environnements segmentés qui ne sont pas directement accessibles depuis le SaaS.</p>
+<p>L’Agent fournit deux capacités complémentaires : le scan local des services/certificats TLS et la découverte cryptographique locale lorsqu’elle est activée.</p>
 <h2 id="enroll">2. Enrôlement</h2>
-<p>Depuis la page des Agents, créez un enrôlement pour l’organisation et donnez un nom à l’Agent. Le jeton d’enrôlement est <strong>court terme et à usage unique</strong>.</p>
-<p>Au premier enregistrement, l’Agent transmet notamment un identifiant machine, sa version, ses interfaces réseau et sa configuration. Le serveur le rattache à l’organisation de l’enrôlement, marque son statut en ligne et lui remet un jeton d’authentification propre à l’Agent.</p>
-<div class="callout warning">Ne réutilisez pas un jeton d’enrôlement expiré ou déjà consommé. Ne copiez jamais le jeton d’authentification d’un Agent dans un ticket ou une documentation.</div>
-<h2 id="status">3. Vérifier l’état</h2>
-<p>La fiche Agent permet de vérifier son nom, son organisation, sa version, ses interfaces réseau, son statut et sa dernière communication. Le heartbeat met à jour <strong>last heartbeat</strong> et permet de distinguer un Agent joignable d’un Agent hors ligne.</p>
-<h2 id="local">4. Créer un scan local</h2>
-<p>Les configurations de scan local sont rattachées à un Agent. Définissez uniquement les CIDR et ports accessibles depuis cette machine. Après lancement, suivez le statut et les résultats dans la fiche de l’Agent et les écrans Discovery.</p>
-<p>Les résultats locaux sont traités dans le contexte de l’organisation de l’Agent et peuvent enrichir l’inventaire de certificats.</p>
-<h2 id="network">5. Réseau et sécurité</h2>
-<ul><li>L’Agent doit établir une connexion sortante HTTPS vers Ecurem CLM.</li><li>Il doit atteindre les cibles locales sur les ports configurés.</li><li>Il n’est pas nécessaire d’ouvrir arbitrairement des ports entrants vers l’Agent pour communiquer avec le SaaS.</li><li>Limitez les plages CIDR au périmètre approuvé.</li></ul>
-<h2 id="trouble">6. Dépannage</h2>
-<ul><li><strong>Invalid or expired enrollment token</strong> : générez un nouvel enrôlement.</li><li><strong>Agent offline</strong> : vérifiez service local, DNS, HTTPS sortant et horloge système.</li><li><strong>Scan local sans résultat</strong> : vérifiez route, pare-feu, CIDR et ports depuis la machine Agent.</li><li><strong>Mauvaise version</strong> : installez la version approuvée depuis la page de téléchargement Agent.</li></ul>
+<p>Créez un enrôlement pour l’organisation cible et donnez un nom à l’Agent. Le jeton d’enrôlement est court terme et à usage unique. Lors du premier enregistrement, le serveur rattache l’Agent à l’organisation correspondante.</p>
+<div class="callout warning">Ne réutilisez pas un jeton expiré ou consommé et ne placez jamais un jeton d’authentification Agent dans un ticket, une capture ou une documentation.</div>
+<h2 id="status">3. État et heartbeat</h2>
+<p>La fiche Agent permet de vérifier notamment son nom, son organisation, sa version, ses interfaces, son statut et sa dernière communication. Le heartbeat maintient la visibilité en ligne/hors ligne.</p>
+<h2 id="tls">4. Scans locaux TLS</h2>
+<p>Les configurations de scan local sont rattachées à un Agent. Définissez uniquement les CIDR et ports accessibles depuis cette machine et appartenant au périmètre autorisé.</p>
+<p>Les résultats TLS peuvent enrichir l’Inventaire de certificats. Cette capacité reste distincte de la découverte cryptographique locale.</p>
+<h2 id="crypto">5. Découverte cryptographique locale</h2>
+<p>Lorsque <strong>Activer la découverte cryptographique locale</strong> est sélectionné, l’Agent analyse les emplacements configurés avec son collecteur cryptographique local.</p>
+<p>Le résultat attendu est un document JSON CBOM. L’Agent vérifie qu’il s’agit d’un document <strong>CycloneDX 1.7</strong> avant de poursuivre le traitement.</p>
+<p>Une erreur de collecte ou de transmission CBOM n’invalide pas un scan TLS déjà terminé.</p>
+<h2 id="cbom">6. CBOM CycloneDX 1.7</h2>
+<p>Avant transmission, l’Agent assainit le CBOM. Les métadonnées définies comme sensibles, notamment secrets, mots de passe, jetons, informations d’identification ou matière de clé privée, sont supprimées.</p>
+<p>Le CBOM assaini est envoyé à Ecurem CLM. Le serveur valide le document puis normalise ses composants dans l’Inventaire cryptographique de l’organisation, en conservant le contexte de provenance disponible.</p>
+<h2 id="queue">7. File locale et reconnexion</h2>
+<p>Le CBOM assaini est placé dans une file locale avant transmission. Si Ecurem CLM est temporairement indisponible, le résultat peut rester en attente et être envoyé après reconnexion.</p>
+<h2 id="security">8. Réseau et sécurité</h2>
+<ul><li>L’Agent établit une connexion HTTPS sortante vers Ecurem CLM.</li><li>Il doit atteindre les cibles locales sur les ports configurés.</li><li>Aucune exposition entrante arbitraire n’est nécessaire pour la communication avec le SaaS.</li><li>Limitez CIDR, ports et emplacements au périmètre approuvé.</li><li>Traitez les jetons d’enrôlement et d’authentification comme des secrets.</li></ul>
+<h2 id="trouble">9. Dépannage</h2>
+<ul><li><strong>Invalid or expired enrollment token</strong> : générez un nouvel enrôlement.</li><li><strong>Agent offline</strong> : vérifiez service local, DNS, HTTPS sortant et horloge système.</li><li><strong>Scan TLS sans résultat</strong> : vérifiez route, pare-feu, CIDR et ports depuis l’hôte Agent.</li><li><strong>Découverte crypto sans résultat</strong> : vérifiez l’emplacement configuré et l’état du collecteur.</li><li><strong>Transmission CBOM en attente</strong> : vérifiez connectivité et autorisation de la fonction.</li></ul>
 </main>
 <footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>

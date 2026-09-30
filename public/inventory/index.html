@@ -1,83 +1,30 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inventaire — Ecurem CLM Docs</title><meta name="description" content="Utiliser l’inventaire comme source de visibilité sur les certificats suivis par l’organisation."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a class="" href="/en/">EN</a></div></div></nav></header>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inventaire — Ecurem CLM Docs</title><meta name="description" content="Gérer les certificats et les actifs cryptographiques dans Ecurem CLM et relier les observations Discovery aux inventaires."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a href="/en/">EN</a></div></div></nav></header>
 <div class="breadcrumb"><a href="/">Accueil</a> / Inventaire</div>
 <main class="article">
-<span class="eyebrow">INVENTAIRE</span>
-<h1>Inventaire</h1>
-<p class="lead">Utiliser la Liste des actifs pour distinguer les domaines connus, les certificats réellement observés et les actifs qui nécessitent une action.</p>
-
+<span class="eyebrow">INVENTAIRE</span><h1>Inventaire</h1>
+<p class="lead">Ecurem CLM associe l’inventaire des certificats et domaines à un inventaire cryptographique dédié afin de donner une vue exploitable des actifs, des expirations, des risques et de la préparation post-quantique.</p>
 <div class="toc"><strong>Dans cette page</strong>
-<a href="#overview">1. Ce que montre l’Inventaire</a>
-<a href="#certificates">2. Onglet Certificats</a>
-<a href="#domains">3. Onglet Domaines</a>
-<a href="#statuses">4. Comprendre les indicateurs</a>
-<a href="#detail">5. Lire une fiche certificat</a>
-<a href="#crypto">6. Informations cryptographiques</a>
-<a href="#tags">7. Tags et ciblage</a>
-<a href="#import">8. Importer des domaines</a>
-<a href="#workflow">9. Workflow recommandé</a>
-</div>
-
-<h2 id="overview">1. Ce que montre l’Inventaire</h2>
-<p>Dans Ecurem CLM, <strong>Inventaire</strong> ouvre la <strong>Liste des actifs</strong>. Cette vue regroupe deux onglets : <strong>Certificats</strong> et <strong>Domaines</strong>. L’organisation active détermine le périmètre visible.</p>
-<p>L’objectif n’est pas seulement de compter les certificats : l’Inventaire sert de point de départ pour comprendre ce qui existe, ce qui expire, ce qui est critique et ce qui doit être géré par Discovery ou Renewal.</p>
-
-<h2 id="certificates">2. Onglet Certificats</h2>
-<p>L’onglet <strong>Certificats</strong> présente notamment des indicateurs de synthèse comme :</p>
-<ul>
-<li><strong>Total certificats</strong> : certificats visibles dans le périmètre courant.</li>
-<li><strong>Actifs</strong> : certificats considérés comme encore valides/actifs.</li>
-<li><strong>Expirent bientôt</strong> : certificats entrant dans la fenêtre d’expiration surveillée.</li>
-<li><strong>Critiques</strong> : certificats dont l’état ou le risque nécessite une attention prioritaire.</li>
-</ul>
-<p>Utilisez cette vue avant Renewal pour confirmer que vous ciblez le bon certificat, sur le bon domaine, dans la bonne organisation.</p>
-
-<h2 id="domains">3. Onglet Domaines</h2>
-<p>L’onglet <strong>Domaines</strong> fournit la vue des domaines connus et leur état. Les compteurs permettent notamment de distinguer le total, les domaines actifs et les domaines inactifs.</p>
-<p>Un domaine peut exister dans l’Inventaire sans qu’un certificat doive être automatiquement renouvelé. Discovery peut également enrichir l’Inventaire à partir des observations réseau.</p>
-
-<h2 id="statuses">4. Comprendre les indicateurs</h2>
-<p>Les cartes d’état servent à prioriser les opérations :</p>
-<ul>
-<li><strong>Valide / Actif</strong> : aucune urgence d’expiration immédiate, mais le certificat reste à surveiller.</li>
-<li><strong>Expire bientôt</strong> : préparez validation de domaine, politique Renewal et cible de déploiement.</li>
-<li><strong>Critique</strong> : examinez l’expiration, la confiance, l’algorithme, la taille de clé, le contexte TLS et les constats associés.</li>
-<li><strong>Inactif</strong> : vérifiez si l’objet doit être conservé, réactivé ou retiré de votre périmètre opérationnel.</li>
-</ul>
-
-<h2 id="detail">5. Lire une fiche certificat</h2>
-<p>Ouvrez un certificat pour examiner les informations qui expliquent son état : domaine, sujet, émetteur, numéro de série, dates de validité, empreinte, algorithmes et données de sécurité disponibles.</p>
-<p>Lorsque le certificat provient de Discovery, vérifiez aussi le contexte d’observation : cible, port et service. Un même certificat peut être observé à plusieurs endroits sans représenter plusieurs certificats logiques différents.</p>
-
-<h2 id="crypto">6. Informations cryptographiques</h2>
-<p>L’Inventaire cryptographique complète les données X.509 classiques avec les informations disponibles sur :</p>
-<ul>
-<li>algorithme de signature ;</li>
-<li>algorithme et taille de clé publique ;</li>
-<li>version TLS observée ;</li>
-<li>suite cryptographique observée ;</li>
-<li>classification classique, hybride ou post-quantique lorsque les éléments techniques permettent de la déterminer ;</li>
-<li>constats de faiblesse ou de métadonnées manquantes.</li>
-</ul>
-<div class="callout">L’absence d’une donnée cryptographique ne signifie pas que le certificat est conforme ou non conforme. Elle signifie simplement que la plateforme ne dispose pas encore d’une preuve suffisante pour ce critère.</div>
-
-<h2 id="tags">7. Tags et ciblage</h2>
-<p>Utilisez les tags pour distinguer les actifs réellement gérés des actifs simplement observés. Une convention courante peut être :</p>
-<ul><li><code>prod</code></li><li><code>preprod</code></li><li><code>demo</code></li><li><code>renewal-auto</code></li><li><code>renewal-manual</code></li></ul>
-<p>Avant toute action groupée, vérifiez toujours la liste réelle des certificats sélectionnés.</p>
-
-<h2 id="import">8. Importer des domaines</h2>
-<p>Le bouton <strong>Importer domaines</strong> permet d’alimenter l’organisation avec un ensemble de domaines à suivre. Après import, utilisez Discovery pour observer les services et certificats réellement présents.</p>
-<p>Évitez d’importer de très grands périmètres sans gouvernance : définissez propriétaire, finalité et périmètre avant de lancer des scans ou des renouvellements.</p>
-
-<h2 id="workflow">9. Workflow recommandé</h2>
-<ol>
-<li>Importer ou créer les domaines à suivre.</li>
-<li>Lancer Discovery sur un périmètre autorisé.</li>
-<li>Examiner les certificats trouvés dans l’Inventaire.</li>
-<li>Classer les actifs avec des tags.</li>
-<li>Identifier les expirations et risques.</li>
-<li>Configurer Validation de domaine et Renewal uniquement pour les actifs réellement gérés.</li>
-<li>Utiliser Rapports pour suivre la posture et documenter les actions.</li>
-</ol>
+<a href="#overview">1. Deux inventaires complémentaires</a><a href="#certificates">2. Certificats</a><a href="#domains">3. Domaines</a><a href="#crypto">4. Inventaire cryptographique</a><a href="#posture">5. Risque et posture quantique</a><a href="#sources">6. Origine des observations</a><a href="#workflow">7. Workflow recommandé</a></div>
+<h2 id="overview">1. Deux inventaires complémentaires</h2>
+<p><strong>Inventaire</strong> conserve la visibilité opérationnelle sur les certificats X.509 et les domaines. <strong>Inventaire cryptographique</strong> complète cette vue avec les mécanismes cryptographiques observés dans le périmètre de l’organisation.</p>
+<p><a href="/crypto-inventory/">Ouvrir la documentation de l’Inventaire cryptographique.</a></p>
+<h2 id="certificates">2. Certificats</h2>
+<p>La vue Certificats permet de suivre les certificats connus ou découverts, leur état, leur émetteur, leur période de validité, leur expiration et les informations cryptographiques disponibles.</p>
+<p>Selon les preuves collectées, une fiche peut inclure le sujet, l’émetteur, le numéro de série, l’empreinte, les algorithmes, le type et la taille de clé publique ainsi que le contexte TLS observé.</p>
+<p>Utilisez cette vue avant Renewal pour confirmer le certificat, le domaine et l’organisation réellement concernés.</p>
+<h2 id="domains">3. Domaines</h2>
+<p>La vue Domaines regroupe les domaines connus et leur état. Un domaine suivi n’implique pas automatiquement qu’un certificat doit être renouvelé.</p>
+<p>Discovery peut enrichir ce périmètre à partir des observations réseau et TLS effectuées dans un scope autorisé.</p>
+<h2 id="crypto">4. Inventaire cryptographique</h2>
+<p>L’Inventaire cryptographique représente les observations utiles à la crypto-agilité. Selon la source et la preuve disponible, un actif peut décrire des algorithmes, protocoles, bibliothèques, clés, tailles de clés, caractéristiques TLS, niveau de risque et classification classique, hybride ou post-quantique.</p>
+<div class="callout">Une information absente ou indéterminée ne constitue pas automatiquement une non-conformité : elle signifie que la plateforme ne dispose pas encore d’une preuve suffisante pour ce critère.</div>
+<h2 id="posture">5. Risque et posture quantique</h2>
+<p>Les indicateurs et filtres de l’Inventaire cryptographique permettent notamment d’isoler les actifs vulnérables au quantique, résistants au quantique, les clés faibles, les protocoles obsolètes et les niveaux de risque faible à critique lorsqu’une conclusion peut être établie à partir des données disponibles.</p>
+<p>Ces indicateurs facilitent la priorisation ; ils ne remplacent pas une analyse de conformité complète du système qui utilise l’actif.</p>
+<h2 id="sources">6. Origine des observations</h2>
+<p>Discovery réseau/TLS alimente principalement la visibilité sur les services et certificats observés. Discovery Agent complète cette visibilité dans les réseaux internes.</p>
+<p>Lorsque la découverte cryptographique locale est activée, Discovery Agent peut produire un CBOM <strong>CycloneDX 1.7</strong> assaini et le transmettre à Ecurem CLM. Le serveur valide et normalise ensuite ces observations dans l’Inventaire cryptographique de l’organisation.</p>
+<h2 id="workflow">7. Workflow recommandé</h2>
+<ol><li>Définir l’organisation et le périmètre autorisé.</li><li>Ajouter ou importer les domaines nécessaires.</li><li>Lancer Discovery pour les services et certificats accessibles.</li><li>Utiliser Discovery Agent pour les environnements internes.</li><li>Examiner les certificats dans Inventaire et les observations crypto dans Inventaire cryptographique.</li><li>Prioriser expirations, risques et préparation post-quantique.</li><li>Configurer Renewal uniquement pour les certificats réellement gérés.</li><li>Utiliser Rapports et Compliance pour documenter la posture et les actions.</li></ol>
 </main>
 <footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>

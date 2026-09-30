@@ -1,85 +1,32 @@
-﻿<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovery â€” Ecurem CLM Docs</title><meta name="description" content="Discover TLS services and certificates within an authorized scope while keeping control of the scan boundary."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/en"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/en">Home</a><a href="/en/security/">Security</a><a href="/en/discovery/">Discovery</a><a href="/en/renewal/">Renewal</a><a href="/en/troubleshooting/">Troubleshooting</a><a href="https://ecurem.cloud/en/">ecurem.cloud</a><div class="lang"><a class="" href="/">FR</a><a class="active" href="/en/">EN</a></div></div></nav></header>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovery — Ecurem CLM Docs</title><meta name="description" content="Discover TLS services, certificates and cryptographic observations within an authorized scope using Ecurem CLM."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/en"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/en">Home</a><a href="/en/security/">Security</a><a href="/en/discovery/">Discovery</a><a href="/en/renewal/">Renewal</a><a href="/en/troubleshooting/">Troubleshooting</a><a href="https://ecurem.cloud/en/">ecurem.cloud</a><div class="lang"><a href="/">FR</a><a class="active" href="/en/">EN</a></div></div></nav></header>
 <div class="breadcrumb"><a href="/en/">Home</a> / Discovery</div>
-<main class="article">
-<span class="eyebrow">DISCOVERY</span>
-<h1>Discovery</h1>
-<p class="lead">Configure scans, choose the right target type, monitor jobs and interpret certificates actually observed on the network.</p>
-
-<div class="toc"><strong>On this page</strong>
-<a href="#start">1. Quick scan or persistent configuration?</a>
-<a href="#quick">2. Run a quick scan</a>
-<a href="#config">3. Create a Discovery configuration</a>
-<a href="#types">4. Choose scan type</a>
-<a href="#scope">5. Targets and ports</a>
-<a href="#limits">6. Limits and timeouts</a>
-<a href="#subdomains">7. Subdomain discovery</a>
-<a href="#jobs">8. Monitor a job</a>
-<a href="#results">9. Read results</a>
-<a href="#schedule">10. Scheduling</a>
-<a href="#errors">11. Common errors</a>
-</div>
-
-<h2 id="start">1. Quick scan or persistent configuration?</h2>
-<p><strong>Quick Scan</strong> is suited to a one-time test or investigation. Ecurem CLM creates a manual configuration and immediately queues a job.</p>
-<p>A persistent <strong>Discovery configuration</strong> is better for a scope that should be saved, rerun or scheduled.</p>
-
-<h2 id="quick">2. Run a quick scan</h2>
-<ul>
-<li><strong>Scan name</strong>.</li>
-<li><strong>Organization</strong>.</li>
-<li><strong>Scan type</strong>.</li>
-<li><strong>Targets</strong>: one domain, IP address or CIDR network per line.</li>
-<li><strong>TLS ports</strong>: defaults to <code>443,8443,9443</code>.</li>
-<li><strong>Maximum targets</strong>: 1â€“1000, initial value 100.</li>
-<li><strong>Timeout per target</strong>: 1â€“60 seconds, initial value 10.</li>
-<li><strong>Discover subdomains</strong>.</li>
-</ul>
-<div class="callout"><strong>Domain example:</strong> choose a domain scan, enter <code>example.com</code>, keep <code>443,8443</code>, and enable subdomain discovery if required.</div>
-<div class="callout"><strong>Network example:</strong> choose a network scan and enter <code>10.20.30.0/24</code>.</div>
-
-<h2 id="config">3. Create a Discovery configuration</h2>
-<p>The full form exposes: Configuration Name, Description, Organization, Scan Type, Schedule, Active Configuration, Target Domains, Network Ranges, Ports to Scan, Max Targets per Scan, Delay Between Scans, Timeout per Target, Scan Common Subdomains and Verify SSL Certificates.</p>
-<p>At least one target domain or network range is required.</p>
-
-<h2 id="types">4. Choose scan type</h2>
-<ul>
-<li><strong>Domain scan</strong>: DNS names; CIDR ranges are rejected.</li>
-<li><strong>Network scan</strong>: IP/CIDR targets; DNS names are rejected by Quick Scan.</li>
-<li><strong>Hybrid scan</strong>: where enabled, combines domain enumeration and network-level observations for a domain scope.</li>
-</ul>
-
-<h2 id="scope">5. Targets and ports</h2>
-<p>Target Domains accepts one domain per line or comma-separated values. Network Ranges expects CIDR notation. Ports to Scan expects comma-separated integers between 1 and 65535.</p>
-<div class="callout warning"><strong>Scope:</strong> include only domains, addresses and networks your organization is authorized to assess.</div>
-
-<h2 id="limits">6. Limits and timeouts</h2>
-<ul>
-<li><strong>Max Targets per Scan</strong>: controls per-run workload; full configurations validate up to 10,000.</li>
-<li><strong>Delay Between Scans</strong>: 0â€“3600 seconds.</li>
-<li><strong>Timeout per Target</strong>: 1â€“300 seconds in the full configuration form.</li>
-</ul>
-
-<h2 id="subdomains">7. Subdomain discovery</h2>
-<p>When enabled, Discovery can expand candidate identities using in-scope DNS identities, certificate SANs and, depending on scan mode, Certificate Transparency and HTTP crawl observations.</p>
-
-<h2 id="jobs">8. Monitor a job</h2>
-<p>Job information includes status, targets scanned, certificates found, new certificates, error count, start time, duration and progress. Use the job log for detailed technical events.</p>
-<p>Pending or running jobs can be cancelled. A second concurrent job for the same configuration is not allowed.</p>
-
-<h2 id="results">9. Read results</h2>
-<p>Each result records target, port, target type, status, observed certificate data and any error message. Result states include <code>Success</code>, <code>Failed</code>, <code>Timeout</code> and <code>Error</code>.</p><p>Where cryptographic discovery is available and enabled, observations can also enrich the <a href="/en/crypto-inventory/">Cryptographic Inventory</a>.</p>
-
-<h2 id="schedule">10. Scheduling</h2>
-<p>Active configurations can be scheduled hourly, daily, weekly or monthly. The scheduler skips configurations that already have a pending or running job.</p>
-
-<h2 id="errors">11. Common errors</h2>
-<ul>
-<li>No target configured: add at least one domain or network.</li>
-<li>Invalid port: use 1â€“65535.</li>
-<li>Domain scan with CIDR: switch scan type or remove the network.</li>
-<li>Network scan with hostname: use IP/CIDR targets only.</li>
-<li>No certificate found: verify DNS, routing, target port and actual TLS availability.</li>
-<li>Many timeouts: reduce the scope and validate connectivity before increasing timeouts.</li>
-</ul>
+<main class="article"><span class="eyebrow">DISCOVERY</span><h1>Discovery</h1>
+<p class="lead">Discovery reduces blind spots by combining network/TLS certificate observation with Discovery Agent for internal environments and, when enabled, local cryptographic discovery.</p>
+<div class="toc"><strong>On this page</strong><a href="#paths">1. Two complementary paths</a><a href="#standard">2. Network/TLS Discovery</a><a href="#scope">3. Scan types and scope</a><a href="#jobs">4. Jobs and results</a><a href="#agent">5. Discovery Agent</a><a href="#crypto">6. Local cryptographic discovery</a><a href="#inventory">7. Inventory integration</a><a href="#errors">8. Troubleshooting</a></div>
+<h2 id="paths">1. Two complementary paths</h2>
+<p><strong>Network/TLS Discovery</strong> scans authorized domains, IP addresses and networks to identify TLS services and certificates actually observed.</p>
+<p><strong>Discovery Agent</strong> runs scans from inside customer networks to reach private environments. It can also perform local cryptographic discovery when that capability is enabled.</p>
+<div class="callout">Certificate/TLS scanning and local cryptographic discovery are separate processes. A crypto-collection problem does not turn an already completed TLS scan into a failed scan.</div>
+<h2 id="standard">2. Network/TLS Discovery</h2>
+<p>Use Quick Scan for a one-time investigation or a persistent Discovery configuration for a scope that should be saved, rerun or scheduled.</p>
+<p>Depending on scan type, targets can be domains, IP addresses or CIDR networks. TLS ports and execution limits keep workload and scope controlled.</p>
+<h2 id="scope">3. Scan types and scope</h2>
+<ul><li><strong>Domain scan</strong>: DNS names within the authorized scope.</li><li><strong>Network scan</strong>: IP addresses or CIDR ranges.</li><li><strong>Hybrid scan</strong>: when available, a combination of name enumeration and network observations for a domain.</li></ul>
+<p>Include only targets your organization is authorized to assess. Start with a limited scope and expand it after validating routing, firewalls and response times.</p>
+<h2 id="jobs">4. Jobs and results</h2>
+<p>A job exposes status, progress, targets scanned, certificates found, new certificates, errors and log events.</p>
+<p>Each TLS result retains observation context such as target, port, target type, status and certificate data when a usable service is encountered.</p>
+<h2 id="agent">5. Discovery Agent</h2>
+<p>Discovery Agent is intended for private networks and services not directly reachable from the SaaS service. It establishes outbound HTTPS connectivity to Ecurem CLM and runs assigned scans locally.</p>
+<p><a href="/en/discovery-agent/">See Discovery Agent documentation.</a></p>
+<h2 id="crypto">6. Local cryptographic discovery</h2>
+<p>When <strong>Enable local cryptographic discovery</strong> is selected, Discovery Agent analyzes configured locations with its local collector and produces a CBOM document.</p>
+<p>The Agent verifies that the document is <strong>CycloneDX 1.7</strong>, sanitizes metadata defined as sensitive, and places the result in a local queue before submission.</p>
+<p>If the platform is temporarily unavailable, the CBOM can remain queued and be delivered after connectivity returns.</p>
+<h2 id="inventory">7. Inventory integration</h2>
+<p>TLS and certificate observations can enrich the standard Inventory. Validated and normalized CBOM observations feed the organization’s Cryptographic Inventory.</p>
+<p><a href="/en/inventory/">See Inventory.</a> · <a href="/en/crypto-inventory/">See Cryptographic Inventory.</a></p>
+<h2 id="errors">8. Troubleshooting</h2>
+<ul><li><strong>No certificate found</strong>: verify DNS, routing, firewall, target port and actual TLS availability.</li><li><strong>Agent offline</strong>: check the Agent service, DNS, outbound HTTPS and system clock.</li><li><strong>CBOM submission pending</strong>: verify connectivity and authorization for the local cryptographic feature.</li></ul>
 </main>
-<footer class="footer"><div class="footer-inner"><span>Â© 2026 Ecurem â€” Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/en/">ecurem.cloud</a> Â· <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>
+<footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/en/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>

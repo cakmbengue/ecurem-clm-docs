@@ -1,4 +1,4 @@
-﻿<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inventaire cryptographique — Ecurem CLM Docs</title><meta name="description" content="Comprendre l’inventaire cryptographique, les actifs crypto, la préparation post-quantique et les indicateurs de risque dans Ecurem CLM."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a href="/en/">EN</a></div></div></nav></header>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inventaire cryptographique — Ecurem CLM Docs</title><meta name="description" content="Comprendre l’inventaire cryptographique, les actifs crypto, la préparation post-quantique et les indicateurs de risque dans Ecurem CLM."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a href="/en/">EN</a></div></div></nav></header>
 
 <div class="breadcrumb"><a href="/">Accueil</a> / Inventaire cryptographique</div>
 
@@ -100,11 +100,13 @@
 
 <h2 id="discovery">7. Relation avec Discovery</h2>
 
-<p>Discovery peut enrichir l’Inventaire cryptographique à partir des services, certificats et caractéristiques TLS observés dans un périmètre autorisé.</p>
+<p>Discovery réseau/TLS peut enrichir l’Inventaire cryptographique à partir des services, certificats et caractéristiques TLS observés dans un périmètre autorisé.</p>
 
-<p>Lorsque la découverte cryptographique est disponible et activée pour la configuration concernée, les observations peuvent alimenter les informations utilisées par l’Inventaire cryptographique.</p>
+<p>Dans les réseaux internes, Discovery Agent complète cette collecte. Lorsque la découverte cryptographique locale est activée, l’Agent produit un CBOM <strong>CycloneDX 1.7</strong>, assainit les métadonnées sensibles puis le transmet à Ecurem CLM. Le serveur valide et normalise les composants reçus dans l’Inventaire cryptographique de l’organisation.</p>
 
-<p><a href="/discovery/">Voir la documentation Discovery.</a></p>
+<p>Le scan certificat/TLS et la collecte cryptographique locale restent deux traitements distincts : un problème CBOM n’invalide pas un scan TLS déjà terminé.</p>
+
+<p><a href="/discovery/">Voir Discovery.</a> · <a href="/discovery-agent/">Voir Discovery Agent.</a></p>
 
 <h2 id="reports">8. Relation avec Rapports</h2>
 
