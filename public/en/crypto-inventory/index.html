@@ -1,0 +1,133 @@
+﻿<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cryptographic Inventory — Ecurem CLM Docs</title><meta name="description" content="Understand cryptographic inventory, crypto assets, post-quantum readiness and risk indicators in Ecurem CLM."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/en"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/en">Home</a><a href="/en/security/">Security</a><a href="/en/discovery/">Discovery</a><a href="/en/renewal/">Renewal</a><a href="/en/troubleshooting/">Troubleshooting</a><a href="https://ecurem.cloud/en/">ecurem.cloud</a><div class="lang"><a href="/">FR</a><a class="active" href="/en/">EN</a></div></div></nav></header>
+
+<div class="breadcrumb"><a href="/en/">Home</a> / Cryptographic Inventory</div>
+
+<main class="article">
+<span class="eyebrow">CRYPTO INVENTORY</span>
+<h1>Cryptographic Inventory</h1>
+
+<p class="lead">Identify observed cryptographic assets, understand exposure and prepare the transition to quantum-resistant mechanisms.</p>
+
+<div class="toc"><strong>On this page</strong>
+<a href="#overview">1. Purpose</a>
+<a href="#assets">2. Cryptographic assets</a>
+<a href="#indicators">3. The 12 indicators</a>
+<a href="#quantum">4. Classical, hybrid and post-quantum</a>
+<a href="#filters">5. Filters and search</a>
+<a href="#evidence">6. Evidence and unknown state</a>
+<a href="#discovery">7. Discovery integration</a>
+<a href="#reports">8. Reports integration</a>
+<a href="#enterprise">9. Enterprise availability</a>
+<a href="#workflow">10. Recommended workflow</a>
+</div>
+
+<h2 id="overview">1. Purpose</h2>
+
+<p>Cryptographic Inventory extends the traditional certificate inventory with technical information used to understand the cryptographic mechanisms actually observed within the organization scope.</p>
+
+<p>It helps identify classical, hybrid and post-quantum assets as well as assets that require review because of cryptographic weakness or elevated risk.</p>
+
+<h2 id="assets">2. Cryptographic assets</h2>
+
+<p>The <strong>Cryptographic Assets</strong> view exposes technical information associated with certificates and available network observations.</p>
+
+<p>Depending on collected evidence, an asset may include:</p>
+
+<ul>
+<li>observed cryptographic algorithms;</li>
+<li>public-key type and size;</li>
+<li>observed TLS protocols;</li>
+<li>cipher suites;</li>
+<li>network observation context;</li>
+<li>post-quantum classification;</li>
+<li>calculated risk level;</li>
+<li>associated findings.</li>
+</ul>
+
+<h2 id="indicators">3. The 12 indicators</h2>
+
+<p>The Asset List provides twelve summary cards:</p>
+
+<ul>
+<li><strong>Total certificates</strong>;</li>
+<li><strong>Post-quantum</strong>;</li>
+<li><strong>Hybrids</strong>;</li>
+<li><strong>Weak keys</strong>;</li>
+<li><strong>Obsolete protocols</strong>;</li>
+<li><strong>Observed endpoints</strong>;</li>
+<li><strong>Quantum-vulnerable</strong>;</li>
+<li><strong>Quantum-resistant</strong>;</li>
+<li><strong>Low risk</strong>;</li>
+<li><strong>Medium risk</strong>;</li>
+<li><strong>High risk</strong>;</li>
+<li><strong>Critical risk</strong>.</li>
+</ul>
+
+<p>Each indicator can be selected to filter the asset list to the corresponding category.</p>
+
+<div class="callout">Summary counters and filters use the same classification logic so that the number displayed by a card corresponds to the assets returned when that card is selected.</div>
+
+<h2 id="quantum">4. Classical, hybrid and post-quantum</h2>
+
+<p>Ecurem CLM classifies cryptographic mechanisms according to the available technical evidence:</p>
+
+<ul>
+<li><strong>Classical</strong>: traditional cryptographic mechanisms.</li>
+<li><strong>Hybrid</strong>: combinations of classical and post-quantum mechanisms.</li>
+<li><strong>Post-quantum</strong>: mechanisms using primitives designed to resist known quantum attacks.</li>
+</ul>
+
+<p>The platform also distinguishes <strong>quantum-vulnerable</strong> and <strong>quantum-resistant</strong> assets when the available evidence supports that conclusion.</p>
+
+<h2 id="filters">5. Filters and search</h2>
+
+<p>Summary cards can be selected to quickly filter the visible assets.</p>
+
+<p>Advanced search can combine several terms:</p>
+
+<ul>
+<li>different terms are combined using <strong>AND</strong> logic;</li>
+<li>for each individual term, multiple searchable fields are evaluated using <strong>OR</strong> logic.</li>
+</ul>
+
+<h2 id="evidence">6. Evidence and unknown state</h2>
+
+<p>Classification depends on information actually collected. Some assets may therefore remain unknown or undetermined when sufficient evidence is not available.</p>
+
+<div class="callout warning"><strong>Important:</strong> missing information does not mean compliant or non-compliant. It means the available evidence is insufficient to reach a conclusion.</div>
+
+<h2 id="discovery">7. Discovery integration</h2>
+
+<p>Discovery can enrich Cryptographic Inventory with services, certificates and TLS characteristics observed within an authorized scope.</p>
+
+<p>Where cryptographic discovery is available and enabled for the relevant configuration, observations can feed the information used by Cryptographic Inventory.</p>
+
+<p><a href="/en/discovery/">See Discovery documentation.</a></p>
+
+<h2 id="reports">8. Reports integration</h2>
+
+<p>Available cryptographic evidence can be used by compliance and reporting capabilities to produce assessments, findings and supporting evidence.</p>
+
+<p><a href="/en/reports/">See Reports & compliance.</a></p>
+
+<h2 id="enterprise">9. Enterprise availability</h2>
+
+<p>In an Enterprise edition, some cryptographic capabilities may depend on activation by the platform administrator for the relevant organization.</p>
+
+<p>If a capability is unavailable for your organization, contact your platform administrator.</p>
+
+<h2 id="workflow">10. Recommended workflow</h2>
+
+<ol>
+<li>Define the authorized asset scope.</li>
+<li>Use Discovery to collect available observations.</li>
+<li>Open Cryptographic Inventory.</li>
+<li>Review summary cards and filters.</li>
+<li>Identify quantum-vulnerable or high-risk assets.</li>
+<li>Review available evidence before drawing a conclusion.</li>
+<li>Use Reports to document assessments and remediation.</li>
+</ol>
+
+</main>
+
+<footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/en/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>

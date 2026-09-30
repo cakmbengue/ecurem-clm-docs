@@ -1,0 +1,135 @@
+﻿<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inventaire cryptographique — Ecurem CLM Docs</title><meta name="description" content="Comprendre l’inventaire cryptographique, les actifs crypto, la préparation post-quantique et les indicateurs de risque dans Ecurem CLM."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/">Accueil</a><a href="/security/">Sécurité</a><a href="/discovery/">Discovery</a><a href="/renewal/">Renewal</a><a href="/troubleshooting/">Dépannage</a><a href="https://ecurem.cloud/">ecurem.cloud</a><div class="lang"><a class="active" href="/">FR</a><a href="/en/">EN</a></div></div></nav></header>
+
+<div class="breadcrumb"><a href="/">Accueil</a> / Inventaire cryptographique</div>
+
+<main class="article">
+<span class="eyebrow">CRYPTO INVENTORY</span>
+<h1>Inventaire cryptographique</h1>
+
+<p class="lead">Identifier les actifs cryptographiques observés, mesurer leur exposition et préparer la transition vers des mécanismes résistants au quantique.</p>
+
+<div class="toc"><strong>Dans cette page</strong>
+<a href="#overview">1. À quoi sert l’Inventaire cryptographique ?</a>
+<a href="#assets">2. Actifs cryptographiques</a>
+<a href="#indicators">3. Les 12 indicateurs</a>
+<a href="#quantum">4. Classique, hybride et post-quantique</a>
+<a href="#filters">5. Filtres et recherche</a>
+<a href="#evidence">6. Comprendre la preuve disponible</a>
+<a href="#discovery">7. Relation avec Discovery</a>
+<a href="#reports">8. Relation avec Rapports</a>
+<a href="#enterprise">9. Disponibilité dans Enterprise</a>
+<a href="#workflow">10. Workflow recommandé</a>
+</div>
+
+<h2 id="overview">1. À quoi sert l’Inventaire cryptographique ?</h2>
+
+<p>L’Inventaire cryptographique complète l’inventaire traditionnel des certificats. Il permet de regrouper les informations techniques utiles pour comprendre les mécanismes cryptographiques réellement observés dans le périmètre de l’organisation.</p>
+
+<p>Cette vue aide notamment à identifier les actifs utilisant des mécanismes classiques, hybrides ou post-quantiques, ainsi que les éléments nécessitant une revue en raison d’une faiblesse cryptographique ou d’un niveau de risque élevé.</p>
+
+<h2 id="assets">2. Actifs cryptographiques</h2>
+
+<p>La vue <strong>Actifs cryptographiques</strong> permet d’examiner les éléments techniques associés aux certificats et aux observations réseau disponibles.</p>
+
+<p>Selon les données collectées, un actif peut notamment exposer :</p>
+
+<ul>
+<li>les algorithmes cryptographiques observés ;</li>
+<li>la taille et le type de clé publique ;</li>
+<li>les protocoles TLS observés ;</li>
+<li>les suites cryptographiques ;</li>
+<li>le contexte d’observation réseau ;</li>
+<li>la classification post-quantique ;</li>
+<li>le niveau de risque calculé ;</li>
+<li>les constats associés.</li>
+</ul>
+
+<h2 id="indicators">3. Les 12 indicateurs</h2>
+
+<p>La Liste des actifs présente douze cartes de synthèse :</p>
+
+<ul>
+<li><strong>Total certificats</strong> ;</li>
+<li><strong>Post-quantiques</strong> ;</li>
+<li><strong>Hybrides</strong> ;</li>
+<li><strong>Clés faibles</strong> ;</li>
+<li><strong>Protocoles obsolètes</strong> ;</li>
+<li><strong>Endpoints observés</strong> ;</li>
+<li><strong>Vulnérables au quantique</strong> ;</li>
+<li><strong>Résistants au quantique</strong> ;</li>
+<li><strong>Risque faible</strong> ;</li>
+<li><strong>Risque moyen</strong> ;</li>
+<li><strong>Risque élevé</strong> ;</li>
+<li><strong>Risque critique</strong>.</li>
+</ul>
+
+<p>Chaque indicateur peut être utilisé comme filtre pour limiter la liste aux actifs correspondant à la catégorie sélectionnée.</p>
+
+<div class="callout">Les compteurs et les filtres utilisent la même logique de classification afin que la valeur affichée dans une carte corresponde aux actifs obtenus après sélection de cette carte.</div>
+
+<h2 id="quantum">4. Classique, hybride et post-quantique</h2>
+
+<p>Ecurem CLM distingue les mécanismes cryptographiques selon les preuves techniques disponibles :</p>
+
+<ul>
+<li><strong>Classique</strong> : mécanisme cryptographique traditionnel.</li>
+<li><strong>Hybride</strong> : combinaison de mécanismes classiques et post-quantiques.</li>
+<li><strong>Post-quantique</strong> : mécanisme utilisant des primitives conçues pour résister aux attaques quantiques connues.</li>
+</ul>
+
+<p>La plateforme distingue également les actifs <strong>vulnérables au quantique</strong> et les actifs <strong>résistants au quantique</strong> lorsqu’une conclusion peut être établie à partir des données disponibles.</p>
+
+<h2 id="filters">5. Filtres et recherche</h2>
+
+<p>Les cartes de synthèse peuvent être sélectionnées pour filtrer rapidement les actifs.</p>
+
+<p>La recherche avancée permet également de combiner plusieurs termes :</p>
+
+<ul>
+<li>les différents termes sont combinés avec une logique <strong>ET</strong> ;</li>
+<li>pour un même terme, la recherche peut correspondre à plusieurs champs avec une logique <strong>OU</strong>.</li>
+</ul>
+
+<p>Cette combinaison permet par exemple de rechercher simultanément un environnement, un algorithme ou une caractéristique observée sans perdre le contexte des autres critères.</p>
+
+<h2 id="evidence">6. Comprendre la preuve disponible</h2>
+
+<p>La classification dépend des informations réellement collectées. Certains actifs peuvent donc rester dans un état inconnu ou non déterminé si la plateforme ne dispose pas d’une preuve suffisante.</p>
+
+<div class="callout warning"><strong>Important :</strong> une information manquante ne signifie ni conformité ni non-conformité. Elle signifie que les données disponibles ne permettent pas encore de conclure.</div>
+
+<h2 id="discovery">7. Relation avec Discovery</h2>
+
+<p>Discovery peut enrichir l’Inventaire cryptographique à partir des services, certificats et caractéristiques TLS observés dans un périmètre autorisé.</p>
+
+<p>Lorsque la découverte cryptographique est disponible et activée pour la configuration concernée, les observations peuvent alimenter les informations utilisées par l’Inventaire cryptographique.</p>
+
+<p><a href="/discovery/">Voir la documentation Discovery.</a></p>
+
+<h2 id="reports">8. Relation avec Rapports</h2>
+
+<p>Les données cryptographiques disponibles peuvent être exploitées par les fonctions de conformité et de reporting afin de produire des évaluations, constats et preuves.</p>
+
+<p><a href="/reports/">Voir Rapports & conformité.</a></p>
+
+<h2 id="enterprise">9. Disponibilité dans Enterprise</h2>
+
+<p>Dans une édition Enterprise, certaines capacités cryptographiques peuvent dépendre de l’activation réalisée par l’administrateur de plateforme pour l’organisation concernée.</p>
+
+<p>Si une fonction n’est pas disponible dans votre organisation, contactez votre administrateur de plateforme.</p>
+
+<h2 id="workflow">10. Workflow recommandé</h2>
+
+<ol>
+<li>Définir le périmètre d’actifs autorisé.</li>
+<li>Utiliser Discovery pour collecter les observations disponibles.</li>
+<li>Ouvrir l’Inventaire cryptographique.</li>
+<li>Examiner les cartes de synthèse et les filtres.</li>
+<li>Identifier les actifs vulnérables au quantique ou présentant un niveau de risque élevé.</li>
+<li>Vérifier les preuves techniques disponibles avant de conclure.</li>
+<li>Utiliser Rapports pour documenter l’évaluation et suivre la remédiation.</li>
+</ol>
+
+</main>
+
+<footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>

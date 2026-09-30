@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovery — Ecurem CLM Docs</title><meta name="description" content="Discover TLS services and certificates within an authorized scope while keeping control of the scan boundary."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/en"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/en">Home</a><a href="/en/security/">Security</a><a href="/en/discovery/">Discovery</a><a href="/en/renewal/">Renewal</a><a href="/en/troubleshooting/">Troubleshooting</a><a href="https://ecurem.cloud/en/">ecurem.cloud</a><div class="lang"><a class="" href="/">FR</a><a class="active" href="/en/">EN</a></div></div></nav></header>
+﻿<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovery â€” Ecurem CLM Docs</title><meta name="description" content="Discover TLS services and certificates within an authorized scope while keeping control of the scan boundary."><meta name="robots" content="noindex"><link rel="icon" href="/assets/img/favicon.ico"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="stylesheet" href="/assets/style.css"></head><body><header class="site-header"><nav class="nav"><a class="brand" href="/en"><img src="/assets/img/ecurem-mark.png" alt="Ecurem"><span class="brand-name">ECUREM <b>DOCS</b></span></a><div class="navlinks"><a class="docs-home" href="/en">Home</a><a href="/en/security/">Security</a><a href="/en/discovery/">Discovery</a><a href="/en/renewal/">Renewal</a><a href="/en/troubleshooting/">Troubleshooting</a><a href="https://ecurem.cloud/en/">ecurem.cloud</a><div class="lang"><a class="" href="/">FR</a><a class="active" href="/en/">EN</a></div></div></nav></header>
 <div class="breadcrumb"><a href="/en/">Home</a> / Discovery</div>
 <main class="article">
 <span class="eyebrow">DISCOVERY</span>
@@ -30,8 +30,8 @@
 <li><strong>Scan type</strong>.</li>
 <li><strong>Targets</strong>: one domain, IP address or CIDR network per line.</li>
 <li><strong>TLS ports</strong>: defaults to <code>443,8443,9443</code>.</li>
-<li><strong>Maximum targets</strong>: 1–1000, initial value 100.</li>
-<li><strong>Timeout per target</strong>: 1–60 seconds, initial value 10.</li>
+<li><strong>Maximum targets</strong>: 1â€“1000, initial value 100.</li>
+<li><strong>Timeout per target</strong>: 1â€“60 seconds, initial value 10.</li>
 <li><strong>Discover subdomains</strong>.</li>
 </ul>
 <div class="callout"><strong>Domain example:</strong> choose a domain scan, enter <code>example.com</code>, keep <code>443,8443</code>, and enable subdomain discovery if required.</div>
@@ -55,8 +55,8 @@
 <h2 id="limits">6. Limits and timeouts</h2>
 <ul>
 <li><strong>Max Targets per Scan</strong>: controls per-run workload; full configurations validate up to 10,000.</li>
-<li><strong>Delay Between Scans</strong>: 0–3600 seconds.</li>
-<li><strong>Timeout per Target</strong>: 1–300 seconds in the full configuration form.</li>
+<li><strong>Delay Between Scans</strong>: 0â€“3600 seconds.</li>
+<li><strong>Timeout per Target</strong>: 1â€“300 seconds in the full configuration form.</li>
 </ul>
 
 <h2 id="subdomains">7. Subdomain discovery</h2>
@@ -67,7 +67,7 @@
 <p>Pending or running jobs can be cancelled. A second concurrent job for the same configuration is not allowed.</p>
 
 <h2 id="results">9. Read results</h2>
-<p>Each result records target, port, target type, status, observed certificate data and any error message. Result states include <code>Success</code>, <code>Failed</code>, <code>Timeout</code> and <code>Error</code>.</p>
+<p>Each result records target, port, target type, status, observed certificate data and any error message. Result states include <code>Success</code>, <code>Failed</code>, <code>Timeout</code> and <code>Error</code>.</p><p>Where cryptographic discovery is available and enabled, observations can also enrich the <a href="/en/crypto-inventory/">Cryptographic Inventory</a>.</p>
 
 <h2 id="schedule">10. Scheduling</h2>
 <p>Active configurations can be scheduled hourly, daily, weekly or monthly. The scheduler skips configurations that already have a pending or running job.</p>
@@ -75,11 +75,11 @@
 <h2 id="errors">11. Common errors</h2>
 <ul>
 <li>No target configured: add at least one domain or network.</li>
-<li>Invalid port: use 1–65535.</li>
+<li>Invalid port: use 1â€“65535.</li>
 <li>Domain scan with CIDR: switch scan type or remove the network.</li>
 <li>Network scan with hostname: use IP/CIDR targets only.</li>
 <li>No certificate found: verify DNS, routing, target port and actual TLS availability.</li>
 <li>Many timeouts: reduce the scope and validate connectivity before increasing timeouts.</li>
 </ul>
 </main>
-<footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/en/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>
+<footer class="footer"><div class="footer-inner"><span>Â© 2026 Ecurem â€” Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/en/">ecurem.cloud</a> Â· <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>

@@ -13,6 +13,7 @@ The legacy guide on `https://ecurem.cloud/guide` remains dedicated to Ecurem ACM
 
 - Security & trust
 - Inventory
+- Cryptographic Inventory & post-quantum readiness
 - Discovery
 - Discovery Agent
 - Domain validation
@@ -42,4 +43,4 @@ Detailed operational guidance is based on the customer-facing Ecurem CLM forms, 
 
 ## Documentation coverage
 
-The current public baseline covers Inventory, Discovery, Discovery Agent, domain validation, Renewal, Renewal policies, tags, network/firewall requirements, Security & trust, AI Assistant, Reports & compliance, Client PKI, troubleshooting and FAQ in French and English.
+The current public baseline covers Inventory, Cryptographic Inventory and post-quantum readiness, Discovery, Discovery Agent, domain validation, Renewal, Renewal policies, tags, network/firewall requirements, Security & trust, AI Assistant, Reports & compliance, Client PKI, troubleshooting and FAQ in French and English.
