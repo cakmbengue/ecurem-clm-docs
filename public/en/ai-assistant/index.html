@@ -10,5 +10,7 @@
 <h2 id="evidence">4. Evidence</h2><p>Aida should use server-provided tools before making claims about operational data. Missing evidence should be reported as missing rather than guessed.</p>
 <h2 id="security">5. Security</h2><ul><li>Organization scope is fixed server-side.</li><li>Documented assistant tools are read-only.</li><li>Untrusted stored text cannot grant access.</li><li>Never paste passwords, private keys, API tokens or DNS secrets.</li></ul>
 <h2 id="limits">6. Limits</h2><p>Message and conversation limits can depend on the active plan. The interface indicates when a configured quota is reached.</p>
+<section id="private-discovery-aida"><h2>7. Aida and Private Discovery</h2><p>Aida can now explain, within the active organization and the user’s permissions, Sensors, private scan configurations, work orders, authorized scopes and verified observations.</p><p>To correlate a private result, Aida uses the work order → submission → run → observations chain instead of inferring relationships from timestamps alone. Tools remain read-only.</p><div class="callout warning">Enrollment/authentication tokens, machine identifiers, secrets, credentials and sensitive raw payloads are not exposed to the Assistant.</div></section>
+
 </main>
 <footer class="footer"><div class="footer-inner"><span>© 2026 Ecurem — Technology &amp; Cybersecurity</span><span><a href="https://ecurem.cloud/en/">ecurem.cloud</a> · <a href="mailto:info@ecurem.ca">info@ecurem.ca</a></span></div></footer></body></html>
